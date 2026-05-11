@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nos Services | Optical Concept Drancy</title>
+    <title>Politique de Confidentialité | Optical Concept Drancy</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -18,26 +18,23 @@
             --dark-bg: #0a0a0a;
         }
 
-        /* --- SUPPRESSION DE LA SCROLLBAR --- */
-        /* Pour Chrome, Safari, Edge et Opera */
-        html::-webkit-scrollbar,
-        body::-webkit-scrollbar {
+        /* --- SUPPRESSION TOTALE DE LA SCROLLBAR --- */
+        html::-webkit-scrollbar, body::-webkit-scrollbar {
             display: none !important;
             width: 0 !important;
             height: 0 !important;
         }
-
-        /* Pour IE, Edge et Firefox */
         html, body {
-            -ms-overflow-style: none !important;  /* IE and Edge */
-            scrollbar-width: none !important;  /* Firefox */
-            
+            -ms-overflow-style: none !important;
+            scrollbar-width: none !important;
+        }
+
+        body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--dark-bg);
             color: white;
             scroll-behavior: smooth;
         }
-        /* ----------------------------------- */
 
         .font-script { font-family: 'Dancing Script', cursive; }
 
@@ -52,28 +49,35 @@
         }
         .nav-link:hover::after { width: 100%; }
 
-        .service-card {
+        .privacy-card {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 2rem;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
         }
 
-        .service-card:hover {
+        .privacy-card:hover {
             border-color: var(--brand-violet);
-            background: rgba(102, 51, 119, 0.1);
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(102, 51, 119, 0.3);
+            background: rgba(102, 51, 119, 0.03);
+        }
+
+        .section-number {
+            color: var(--brand-green);
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
         }
 
         .social-logo-img {
-            width: 20px;
-            height: 20px;
+            width: 20px; height: 20px;
             object-fit: contain;
             transition: transform 0.3s ease;
         }
-        .social-link:hover .social-logo-img {
-            transform: scale(1.1);
-        }
+        .social-link:hover .social-logo-img { transform: scale(1.1); }
+
+        .highlight-text { color: var(--brand-green); font-weight: 600; }
     </style>
 </head>
 <body>
@@ -84,7 +88,7 @@
         </div>
 
         <div class="hidden lg:flex gap-10 text-sm uppercase tracking-[0.2em] font-bold items-center">
-            <a href="#home" class="nav-link transition-colors">Accueil</a>
+            <a href="index.html" class="nav-link transition-colors">Accueil</a>
             <a href="index.html#marques" class="nav-link transition-colors">Nos Marques</a>
             <a href="services.html" class="nav-link transition-colors">Nos Services</a>
             
@@ -101,97 +105,86 @@
         </div>
     </nav>
 
-    <section class="pt-48 pb-20 container mx-auto px-6">
-        <div class="text-center mb-24">
-            <h1 class="text-6xl md:text-8xl font-black italic tracking-tighter mb-4 uppercase">
-                Expertise & <span class="text-transparent bg-clip-text bg-gradient-to-r from-[--brand-violet] to-purple-400">Services.</span>
+    <main class="pt-48 pb-20 container mx-auto px-6 max-w-5xl">
+        <div class="text-center mb-16">
+            <h1 class="text-5xl md:text-7xl font-black italic tracking-tighter mb-4 uppercase">
+                Politique de <span class="text-transparent bg-clip-text bg-gradient-to-r from-[--brand-violet] to-purple-400">Confidentialité.</span>
             </h1>
             <div class="h-1 w-24 bg-[--brand-green] mx-auto mb-6"></div>
-            <p class="text-gray-400 uppercase tracking-[0.4em] text-xs font-bold">L'excellence au service de votre vision à Drancy</p>
+            <p class="text-gray-400 uppercase tracking-[0.4em] text-xs font-bold">Mise à jour : Mardi 05 Mai 2026</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+        <div class="text-sm text-gray-400 mb-12 leading-relaxed">
+            <p>En application de la loi n°78-17 du 6 janvier 1978 modifiée et du RGPD européen 2016/679, l’Opticien informe tout Utilisateur de son engagement à respecter la confidentialité, l’intégrité et la sécurité des données communiquées via le site <span class="text-white font-semibold">www.optical-concept-drancy.fr</span>.</p>
+        </div>
+
+        <div class="space-y-6">
             
-            <div class="space-y-8">
-                <h2 class="text-2xl font-bold flex items-center gap-4 border-b border-[--brand-green] pb-4 mb-8 uppercase italic">
-                    <i data-lucide="sparkles" class="text-[--brand-green]"></i> Offres & Facilités
+            <section class="privacy-card">
+                <h2 class="text-xl font-bold uppercase tracking-widest mb-6 flex items-baseline">
+                    <span class="section-number">1.</span> Responsable du traitement
                 </h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="service-card p-8 rounded-[2rem]">
-                        <i data-lucide="plus-circle" class="w-6 h-6 text-[--brand-violet] mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Offre Iconique</h4>
-                        <p class="text-xs text-gray-400">2ème paire à 1 euro pour plus de style.</p>
-                    </div>
-                    <div class="service-card p-8 rounded-[2rem]">
-                        <i data-lucide="euro" class="w-6 h-6 text-[--brand-violet] mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Budget Maîtrisé</h4>
-                        <p class="text-xs text-gray-400">Reste à charge 0 & Remboursement 100%.</p>
-                    </div>
-                    <div class="service-card p-8 rounded-[2rem]">
-                        <i data-lucide="credit-card" class="w-6 h-6 text-[--brand-violet] mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Paiements</h4>
-                        <p class="text-xs text-gray-400">CB, Facilités & Tiers payant mutuelles.</p>
-                    </div>
-                    <div class="service-card p-8 rounded-[2rem]">
-                        <i data-lucide="file-text" class="w-6 h-6 text-[--brand-violet] mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Devis Gratuit</h4>
-                        <p class="text-xs text-gray-400">Transparence totale sur nos tarifs.</p>
-                    </div>
-                </div>
-            </div>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                    La société <span class="text-white">OPTICAL CONCEPT</span>, située au 109 AVENUE HENRI BARBUSSE 93700 DRANCY, immatriculée au RCS B BOBIGNY sous le numéro <span class="highlight-text">514 168 152</span>.
+                </p>
+            </section>
 
-            <div class="space-y-8">
-                <h2 class="text-2xl font-bold flex items-center gap-4 border-b border-[--brand-violet] pb-4 mb-8 uppercase italic">
-                    <i data-lucide="shield-check" class="text-[--brand-violet]"></i> Garanties & Suivi
+            <section class="privacy-card">
+                <h2 class="text-xl font-bold uppercase tracking-widest mb-6 flex items-baseline">
+                    <span class="section-number">2.</span> Données collectées
                 </h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="service-card p-8 rounded-[2rem]">
-                        <i data-lucide="wrench" class="w-6 h-6 text-[--brand-green] mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Entretien</h4>
-                        <p class="text-xs text-gray-400">Réparations & ajustages offerts à vie.</p>
-                    </div>
-                    <div class="service-card p-8 rounded-[2rem]">
-                        <i data-lucide="eye" class="w-6 h-6 text-[--brand-green] mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Santé</h4>
-                        <p class="text-xs text-gray-400">Contrôle visuel sans RDV par nos experts.</p>
-                    </div>
-                    <div class="service-card p-8 rounded-[2rem]">
-                        <i data-lucide="check-circle" class="w-6 h-6 text-[--brand-green] mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Adaptation</h4>
-                        <p class="text-xs text-gray-400">Garantie sur verres progressifs & unifocaux.</p>
-                    </div>
-                    <div class="service-card p-8 rounded-[2rem]">
-                        <i data-lucide="hammer" class="w-6 h-6 text-[--brand-green] mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Garantie Casse</h4>
-                        <p class="text-xs text-gray-400">Protection contre les accidents du quotidien.</p>
-                    </div>
-                </div>
-            </div>
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-400">
+                    <li class="flex gap-3"><i data-lucide="mail" class="text-[--brand-violet] w-5 h-5 shrink-0"></i> Adresse e-mail (Formulaires, RDV)</li>
+                    <li class="flex gap-3"><i data-lucide="user" class="text-[--brand-violet] w-5 h-5 shrink-0"></i> Identité (Nom, Prénom, Tél)</li>
+                    <li class="flex gap-3"><i data-lucide="monitor" class="text-[--brand-violet] w-5 h-5 shrink-0"></i> Navigation (OS, Navigateur, IP)</li>
+                    <li class="flex gap-3"><i data-lucide="share-2" class="text-[--brand-violet] w-5 h-5 shrink-0"></i> Réseaux Sociaux</li>
+                </ul>
+            </section>
 
-            <div class="md:col-span-2 space-y-8">
-                <h2 class="text-2xl font-bold flex items-center gap-4 border-b border-white/20 pb-4 mb-8 uppercase italic">
-                    <i data-lucide="truck" class="text-white"></i> Proximité & Mobilité
+            <section class="privacy-card">
+                <h2 class="text-xl font-bold uppercase tracking-widest mb-6 flex items-baseline">
+                    <span class="section-number">5.</span> Finalités du traitement
                 </h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div class="service-card p-8 rounded-[2rem]">
-                        <i data-lucide="home" class="w-6 h-6 text-white mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm italic">Domicile & EHPAD</h4>
-                        <p class="text-xs text-gray-400">Déplacement et livraison à domicile ou au travail.</p>
-                    </div>
-                    <div class="service-card p-8 rounded-[2rem]">
-                        <i data-lucide="accessibility" class="w-6 h-6 text-white mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm italic">Accessibilité PMR</h4>
-                        <p class="text-xs text-gray-400">Magasin et livraison totalement adaptés PMR.</p>
-                    </div>
-                    <div class="service-card p-8 rounded-[2rem]">
-                        <i data-lucide="award" class="w-6 h-6 text-white mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm italic">Expertise</h4>
-                        <p class="text-xs text-gray-400">Conseils personnalisés d'opticiens diplômés.</p>
-                    </div>
+                <div class="space-y-4 text-sm text-gray-400">
+                    <p>Vos données sont traitées pour :</p>
+                    <ul class="space-y-2 list-disc list-inside">
+                        <li>Amélioration des services et produits.</li>
+                        <li>Gestion des demandes de contact et RDV.</li>
+                        <li>Analyses statistiques et mesures d'audience.</li>
+                        <li>Recommandations personnalisées.</li>
+                    </ul>
                 </div>
-            </div>
+            </section>
+
+            <section class="privacy-card border-l-4 border-l-[--brand-violet]">
+                <h2 class="text-xl font-bold uppercase tracking-widest mb-6 flex items-baseline">
+                    <span class="section-number">9.</span> Vos droits (RGPD)
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs uppercase tracking-wider font-bold text-gray-300">
+                    <div class="bg-white/5 p-4 rounded-xl border border-white/5 italic">Droit d'accès</div>
+                    <div class="bg-white/5 p-4 rounded-xl border border-white/5 italic">Droit de rectification</div>
+                    <div class="bg-white/5 p-4 rounded-xl border border-white/5 italic">Droit à l'effacement</div>
+                    <div class="bg-white/5 p-4 rounded-xl border border-white/5 italic">Droit à la portabilité</div>
+                </div>
+                <p class="mt-8 text-sm text-gray-400">Pour exercer vos droits, contactez-nous par mail : <a href="mailto:optical.concept@gmail.com" class="highlight-text underline underline-offset-4">optical.concept@gmail.com</a></p>
+            </section>
+
+            <section class="privacy-card">
+                <h2 class="text-xl font-bold uppercase tracking-widest mb-6 flex items-baseline">
+                    <span class="section-number">12.</span> Gestion des Cookies
+                </h2>
+                <p class="text-sm text-gray-400 mb-6 leading-relaxed">
+                    Nous utilisons des cookies techniques (indispensables), de mesure d'audience (Google Analytics) et de réseaux sociaux. Vous pouvez paramétrer votre navigateur pour les refuser.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <span class="px-4 py-2 bg-white/5 rounded-full text-[10px] border border-white/10 uppercase">Chrome</span>
+                    <span class="px-4 py-2 bg-white/5 rounded-full text-[10px] border border-white/10 uppercase">Firefox</span>
+                    <span class="px-4 py-2 bg-white/5 rounded-full text-[10px] border border-white/10 uppercase">Safari</span>
+                </div>
+            </section>
+
         </div>
-    </section>
+    </main>
 
     <footer class="bg-black/40 border-t border-white/5 pt-16 pb-8">
         <div class="container mx-auto px-6">
@@ -248,7 +241,6 @@
 
     <script>
         lucide.createIcons();
-
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) {

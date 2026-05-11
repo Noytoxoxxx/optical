@@ -181,6 +181,9 @@
             font-size: 14px !important;
             font-weight: 700;
         }
+
+        /* AJOUT POUR LA CARTE */
+        #map { height: 100%; width: 100%; min-height: 100%; }
     </style>
 </head>
 <body>
@@ -191,15 +194,15 @@
         </div>
 
         <div class="hidden lg:flex gap-10 text-sm uppercase tracking-[0.2em] font-bold items-center">
-            <a href="#home" class="nav-link transition-colors">Accueil</a>
-            <a href="#marques" class="nav-link transition-colors">Nos Marques</a>
+            <a href="index.html" class="nav-link transition-colors">Accueil</a>
+            <a href="index.html#marques" class="nav-link transition-colors">Nos Marques</a>
             <a href="services.html" class="nav-link transition-colors">Nos Services</a>
             
             <div class="flex items-center gap-5 px-6 border-x border-white/10">
-                <a href="https://www.instagram.com/" target="_blank" class="social-link">
+                <a href="https://www.instagram.com/optical.concept/" target="_blank" class="social-link">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" class="social-logo-img">
                 </a>
-                <a href="https://www.facebook.com/" target="_blank" class="social-link">
+                <a href="https://www.facebook.com/opticalconcept/" target="_blank" class="social-link">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook" class="social-logo-img">
                 </a>
             </div>
@@ -352,10 +355,10 @@
                 <div>
                     <h3 class="text-[--brand-violet] font-bold uppercase tracking-widest mb-6 text-sm">Optical Concept</h3>
                     <ul class="space-y-3">
-                        <li><a href="#home" class="footer-link text-gray-400">Notre magasin</a></li>
-                        <li><a href="#marques" class="footer-link text-gray-400">Nos marques</a></li>
+                        <li><a href="index.html" class="footer-link text-gray-400">Notre magasin</a></li>
+                        <li><a href="index.html#collections" class="footer-link text-gray-400">Nos marques</a></li>
                         <li><a href="#" class="footer-link text-gray-400">Actualités</a></li>
-                        <li><a href="https://www.opticiensparconviction.fr" target="_blank" class="footer-link text-gray-300 font-semibold border-b border-white/10 pb-1 inline-block">Opticiens Par Conviction <i data-lucide="external-link" class="w-3 h-3 inline"></i></a></li>
+                        <li><a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept" target="_blank" class="footer-link text-gray-300 font-semibold border-b border-white/10 pb-1 inline-block">Opticiens Par Conviction</a></li>
                     </ul>
                 </div>
 
@@ -390,9 +393,9 @@
 
             <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
                 <div class="flex gap-8">
-                    <a href="#" class="text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Mentions légales</a>
-                    <a href="#" class="text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors">CGU</a>
-                    <a href="#" class="text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Confidentialité</a>
+                    <a href="mention_legales.html" class="text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Mentions légales</a>
+                    <a href="cgu.html" class="text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors">CGU</a>
+                    <a href="confid.html" class="text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Confidentialité</a>
                 </div>
                 <p class="text-[10px] text-gray-600 uppercase tracking-[0.5em]">Groupe all © - Tous droits réservés - 2026</p>
             </div>
@@ -406,6 +409,9 @@
         const map = L.map('map', { scrollWheelZoom: false }).setView(coords, 16);
         L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png').addTo(map);
         L.marker(coords).addTo(map);
+
+        // FORCER L'AFFICHAGE DE LA CARTE
+        setTimeout(() => { map.invalidateSize(); }, 500);
 
         function animateCards() {
             const visibleCards = document.querySelectorAll('.brand-card:not(.item-hidden)');

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nos Services | Optical Concept Drancy</title>
+    <title>CGU | Optical Concept Drancy</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -18,26 +18,23 @@
             --dark-bg: #0a0a0a;
         }
 
-        /* --- SUPPRESSION DE LA SCROLLBAR --- */
-        /* Pour Chrome, Safari, Edge et Opera */
-        html::-webkit-scrollbar,
-        body::-webkit-scrollbar {
+        /* --- SUPPRESSION TOTALE DE LA SCROLLBAR --- */
+        html::-webkit-scrollbar, body::-webkit-scrollbar {
             display: none !important;
             width: 0 !important;
             height: 0 !important;
         }
-
-        /* Pour IE, Edge et Firefox */
         html, body {
-            -ms-overflow-style: none !important;  /* IE and Edge */
-            scrollbar-width: none !important;  /* Firefox */
-            
+            -ms-overflow-style: none !important;
+            scrollbar-width: none !important;
+        }
+
+        body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--dark-bg);
             color: white;
             scroll-behavior: smooth;
         }
-        /* ----------------------------------- */
 
         .font-script { font-family: 'Dancing Script', cursive; }
 
@@ -52,28 +49,33 @@
         }
         .nav-link:hover::after { width: 100%; }
 
-        .service-card {
+        /* Style spécifique pour les mentions */
+        .legal-section {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s ease;
+        }
+        
+        .important-box {
+            border: 2px solid var(--brand-violet);
+            background: rgba(102, 51, 119, 0.05);
+            position: relative;
         }
 
-        .service-card:hover {
-            border-color: var(--brand-violet);
-            background: rgba(102, 51, 119, 0.1);
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(102, 51, 119, 0.3);
+        .article-title {
+            color: var(--brand-green);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 800;
+            font-style: italic;
         }
 
         .social-logo-img {
-            width: 20px;
-            height: 20px;
+            width: 20px; height: 20px;
             object-fit: contain;
             transition: transform 0.3s ease;
         }
-        .social-link:hover .social-logo-img {
-            transform: scale(1.1);
-        }
+        .social-link:hover .social-logo-img { transform: scale(1.1); }
     </style>
 </head>
 <body>
@@ -84,7 +86,7 @@
         </div>
 
         <div class="hidden lg:flex gap-10 text-sm uppercase tracking-[0.2em] font-bold items-center">
-            <a href="#home" class="nav-link transition-colors">Accueil</a>
+            <a href="index.html" class="nav-link transition-colors">Accueil</a>
             <a href="index.html#marques" class="nav-link transition-colors">Nos Marques</a>
             <a href="services.html" class="nav-link transition-colors">Nos Services</a>
             
@@ -101,97 +103,73 @@
         </div>
     </nav>
 
-    <section class="pt-48 pb-20 container mx-auto px-6">
-        <div class="text-center mb-24">
-            <h1 class="text-6xl md:text-8xl font-black italic tracking-tighter mb-4 uppercase">
-                Expertise & <span class="text-transparent bg-clip-text bg-gradient-to-r from-[--brand-violet] to-purple-400">Services.</span>
+    <main class="pt-48 pb-20 container mx-auto px-6 max-w-5xl">
+        <div class="text-center mb-16">
+            <h1 class="text-5xl md:text-7xl font-black italic tracking-tighter mb-4 uppercase">
+                Conditions Générales <span class="text-transparent bg-clip-text bg-gradient-to-r from-[--brand-violet] to-purple-400">d'Utilisation.</span>
             </h1>
             <div class="h-1 w-24 bg-[--brand-green] mx-auto mb-6"></div>
-            <p class="text-gray-400 uppercase tracking-[0.4em] text-xs font-bold">L'excellence au service de votre vision à Drancy</p>
+            <p class="text-gray-400 uppercase tracking-[0.4em] text-xs font-bold">Version au Mardi 05 Mai 2026</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
-            
-            <div class="space-y-8">
-                <h2 class="text-2xl font-bold flex items-center gap-4 border-b border-[--brand-green] pb-4 mb-8 uppercase italic">
-                    <i data-lucide="sparkles" class="text-[--brand-green]"></i> Offres & Facilités
-                </h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="service-card p-8 rounded-[2rem]">
-                        <i data-lucide="plus-circle" class="w-6 h-6 text-[--brand-violet] mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Offre Iconique</h4>
-                        <p class="text-xs text-gray-400">2ème paire à 1 euro pour plus de style.</p>
-                    </div>
-                    <div class="service-card p-8 rounded-[2rem]">
-                        <i data-lucide="euro" class="w-6 h-6 text-[--brand-violet] mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Budget Maîtrisé</h4>
-                        <p class="text-xs text-gray-400">Reste à charge 0 & Remboursement 100%.</p>
-                    </div>
-                    <div class="service-card p-8 rounded-[2rem]">
-                        <i data-lucide="credit-card" class="w-6 h-6 text-[--brand-violet] mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Paiements</h4>
-                        <p class="text-xs text-gray-400">CB, Facilités & Tiers payant mutuelles.</p>
-                    </div>
-                    <div class="service-card p-8 rounded-[2rem]">
-                        <i data-lucide="file-text" class="w-6 h-6 text-[--brand-violet] mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Devis Gratuit</h4>
-                        <p class="text-xs text-gray-400">Transparence totale sur nos tarifs.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="space-y-8">
-                <h2 class="text-2xl font-bold flex items-center gap-4 border-b border-[--brand-violet] pb-4 mb-8 uppercase italic">
-                    <i data-lucide="shield-check" class="text-[--brand-violet]"></i> Garanties & Suivi
-                </h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="service-card p-8 rounded-[2rem]">
-                        <i data-lucide="wrench" class="w-6 h-6 text-[--brand-green] mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Entretien</h4>
-                        <p class="text-xs text-gray-400">Réparations & ajustages offerts à vie.</p>
-                    </div>
-                    <div class="service-card p-8 rounded-[2rem]">
-                        <i data-lucide="eye" class="w-6 h-6 text-[--brand-green] mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Santé</h4>
-                        <p class="text-xs text-gray-400">Contrôle visuel sans RDV par nos experts.</p>
-                    </div>
-                    <div class="service-card p-8 rounded-[2rem]">
-                        <i data-lucide="check-circle" class="w-6 h-6 text-[--brand-green] mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Adaptation</h4>
-                        <p class="text-xs text-gray-400">Garantie sur verres progressifs & unifocaux.</p>
-                    </div>
-                    <div class="service-card p-8 rounded-[2rem]">
-                        <i data-lucide="hammer" class="w-6 h-6 text-[--brand-green] mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Garantie Casse</h4>
-                        <p class="text-xs text-gray-400">Protection contre les accidents du quotidien.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="md:col-span-2 space-y-8">
-                <h2 class="text-2xl font-bold flex items-center gap-4 border-b border-white/20 pb-4 mb-8 uppercase italic">
-                    <i data-lucide="truck" class="text-white"></i> Proximité & Mobilité
-                </h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div class="service-card p-8 rounded-[2rem]">
-                        <i data-lucide="home" class="w-6 h-6 text-white mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm italic">Domicile & EHPAD</h4>
-                        <p class="text-xs text-gray-400">Déplacement et livraison à domicile ou au travail.</p>
-                    </div>
-                    <div class="service-card p-8 rounded-[2rem]">
-                        <i data-lucide="accessibility" class="w-6 h-6 text-white mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm italic">Accessibilité PMR</h4>
-                        <p class="text-xs text-gray-400">Magasin et livraison totalement adaptés PMR.</p>
-                    </div>
-                    <div class="service-card p-8 rounded-[2rem]">
-                        <i data-lucide="award" class="w-6 h-6 text-white mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm italic">Expertise</h4>
-                        <p class="text-xs text-gray-400">Conseils personnalisés d'opticiens diplômés.</p>
-                    </div>
-                </div>
+        <div class="important-box p-8 md:p-12 rounded-[2rem] mb-16 border-dashed">
+            <h2 class="text-2xl font-black text-[--brand-violet] mb-6 flex items-center gap-3 italic">
+                <i data-lucide="alert-circle"></i> IMPORTANT :
+            </h2>
+            <div class="space-y-6 text-sm md:text-base leading-relaxed text-gray-200">
+                <p>IL EST EXPRESSEMENT CONVENU QUE TOUTE UTILISATION DU SITE <span class="text-[--brand-green]">www.optical-concept-drancy.fr</span> ET TOUT ACCES A L’UN QUELCONQUE DE SES CONTENUS EFFECTUES A QUELQUE TITRE QUE CE SOIT IMPLIQUENT OBLIGATOIREMENT L’ACCEPTATION SANS RESERVE AINSI QUE LE RESPECT, PAR L’UTILISATEUR, DES PRESENTES CONDITIONS GENERALES D’UTILISATION.</p>
+                <p>L’UTILISATEUR DECLARE EN CONSEQUENCE AVOIR LU ET PRIS CONNAISSANCE DES PRESENTES CONDITIONS GENERALES D’UTILISATION.</p>
+                <p class="font-bold">EN CAS DE RESERVES OU DE CONTESTATION SUR TOUT OU PARTIE DES DISPOSITIONS DES PRESENTES CONDITIONS GENERALES D’UTILISATION, L’UTILISATEUR RECONNAIT QU’IL N’AURA PLUS DE DROIT D’ACCEDER AUX CONTENUS DU SITE.</p>
             </div>
         </div>
-    </section>
+
+        <div class="space-y-12">
+            <section class="legal-section p-8 rounded-[2rem]">
+                <h3 class="article-title mb-6">Article 1. Définitions</h3>
+                <div class="space-y-4 text-sm text-gray-400 leading-relaxed">
+                    <p><strong class="text-white uppercase tracking-wider">CGU :</strong> Désignent l’ensemble des stipulations prévues aux présentes...</p>
+                    <p><strong class="text-white uppercase tracking-wider">Cookies :</strong> Désigne un fichier texte susceptible d’être enregistré...</p>
+                    <p><strong class="text-white uppercase tracking-wider">Opticien :</strong> Désigne OPTICAL CONCEPT 109 AVENUE HENRI BARBUSSE 93700 DRANCY.</p>
+                    <p><strong class="text-white uppercase tracking-wider">Données Personnelles :</strong> Se rapportent au seul Utilisateur à un instant donné...</p>
+                </div>
+            </section>
+
+            <section class="legal-section p-8 rounded-[2rem]">
+                <h3 class="article-title mb-6">Article 2. Objet</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Le Site a seulement pour objet d’assurer la promotion et d’informer les Utilisateurs sur les services rendus par L’Opticien. Ces services sont souscrits auprès de L’Opticien en vertu d'un accord distinct.</p>
+            </section>
+
+            <section class="legal-section p-8 rounded-[2rem]">
+                <h3 class="article-title mb-6">Article 3. Accès au Site</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">L’Utilisateur doit être âgé d’au moins 18 ans et être capable juridiquement de contracter. L’Opticien se réserve le droit d’interrompre temporairement le Site pour maintenance.</p>
+            </section>
+
+            <section class="legal-section p-8 rounded-[2rem]">
+                <h3 class="article-title mb-6">Article 4. Obligations des Utilisateurs</h3>
+                <p class="text-sm text-gray-400 mb-4">Chaque Utilisateur a pour obligation de :</p>
+                <ul class="space-y-2 text-sm text-gray-400 list-disc list-inside">
+                    <li>Ne pas détourner la finalité du Site.</li>
+                    <li>Ne pas pirater ou introduire de code malveillant.</li>
+                    <li>Ne pas dénigrer le Site.</li>
+                </ul>
+            </section>
+
+            <section class="legal-section p-8 rounded-[2rem]">
+                <h3 class="article-title mb-6">Article 8. Limite de Responsabilité</h3>
+                <p class="text-sm text-gray-400 leading-relaxed italic">L’Utilisateur utilise le Site sous sa responsabilité exclusive. L’Opticien ne pourra en aucun cas être tenue pour responsable des dommages directs ou indirects.</p>
+            </section>
+
+            <section class="legal-section p-8 rounded-[2rem]">
+                <h3 class="article-title mb-6">Article 10. Propriété Intellectuelle</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Tous les éléments présents sur le Site sont protégés par le droit d’auteur. Toute reproduction est interdite sans autorisation écrite préalable.</p>
+            </section>
+
+            <section class="legal-section p-8 rounded-[2rem]">
+                <h3 class="article-title mb-6">Article 13. Loi Applicable</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Les présentes conditions sont régies par la loi française. Les juridictions du ressort de la cour d’appel du siège de l’Opticien seront seules compétentes.</p>
+            </section>
+        </div>
+    </main>
 
     <footer class="bg-black/40 border-t border-white/5 pt-16 pb-8">
         <div class="container mx-auto px-6">
@@ -248,7 +226,6 @@
 
     <script>
         lucide.createIcons();
-
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) {
