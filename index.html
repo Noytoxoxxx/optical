@@ -23,7 +23,6 @@
             --dark-bg: #0a0a0a;
         }
 
-        /* Suppression de la scrollbar */
         ::-webkit-scrollbar { display: none; }
         body {
             -ms-overflow-style: none;
@@ -31,12 +30,36 @@
             font-family: 'Montserrat', sans-serif;
             background-color: var(--dark-bg);
             color: white;
-            scroll-behavior: smooth;
+            scroll-behavior: smooth; /* Naturel mais sera géré par GSAP pour plus de fluidité */
         }
 
         .font-script { font-family: 'Dancing Script', cursive; }
 
-        .nav-link { position: relative; }
+        /* --- AMÉLIORATION ARRIÈRE-PLAN --- */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 70% 50%, rgba(102, 51, 119, 0.15) 0%, transparent 50%),
+                        linear-gradient(to bottom, transparent 0%, var(--dark-bg) 95%);
+            z-index: 1;
+        }
+
+        .hero-img-container {
+            position: absolute;
+            inset: 0;
+            z-index: -10;
+            overflow: hidden;
+        }
+
+        .hero-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+            transform: scale(1.1); /* Pour l'effet de zoom au chargement */
+        }
+
+        .nav-link { position: relative; cursor: pointer; }
         .nav-link::after {
             content: '';
             position: absolute;
@@ -48,14 +71,12 @@
         .nav-link:hover::after { width: 100%; }
 
         .social-logo-img {
-            width: 20px;
-            height: 20px;
+            width: 20px; height: 20px;
             object-fit: contain;
             transition: transform 0.3s ease;
         }
         .social-link:hover .social-logo-img { transform: scale(1.1); }
 
-        /* Cartes de marques */
         .brand-card {
             background: white;
             border-radius: 1.5rem;
@@ -91,7 +112,6 @@
 
         .item-hidden { display: none !important; }
 
-        /* BARRE DE FILTRES AVEC GLIDER */
         .filter-container {
             position: relative;
             background: rgba(255,255,255,0.05);
@@ -114,9 +134,7 @@
             white-space: nowrap;
         }
 
-        .filter-btn.active {
-            color: white;
-        }
+        .filter-btn.active { color: white; }
 
         .glider {
             position: absolute;
@@ -146,13 +164,6 @@
             background: rgba(255,255,255,0.08);
         }
 
-        .footer-link {
-            transition: color 0.3s ease;
-            font-size: 0.85rem;
-        }
-        .footer-link:hover { color: var(--brand-violet); }
-
-        /* MODAL ANIMÉE */
         #brand-modal {
             display: none;
             position: fixed;
@@ -173,8 +184,6 @@
             overflow-y: auto;
         }
         
-        #modal-desc p { margin-bottom: 1.5rem; }
-
         .brand-card button {
             color: var(--brand-violet) !important;
             border-bottom: 2px solid rgba(102, 51, 119, 0.2);
@@ -182,7 +191,6 @@
             font-weight: 700;
         }
 
-        /* AJOUT POUR LA CARTE */
         #map { height: 100%; width: 100%; min-height: 100%; }
     </style>
 </head>
@@ -194,8 +202,8 @@
         </div>
 
         <div class="hidden lg:flex gap-10 text-sm uppercase tracking-[0.2em] font-bold items-center">
-            <a href="index.html" class="nav-link transition-colors">Accueil</a>
-            <a href="index.html#marques" class="nav-link transition-colors">Nos Marques</a>
+            <a onclick="scrollToSection('#home')" class="nav-link transition-colors">Accueil</a>
+            <a onclick="scrollToSection('#marques')" class="nav-link transition-colors">Nos Marques</a>
             <a href="services.html" class="nav-link transition-colors">Nos Services</a>
             
             <div class="flex items-center gap-5 px-6 border-x border-white/10">
@@ -212,22 +220,22 @@
     </nav>
 
     <section id="home" class="relative h-screen flex items-center overflow-hidden">
-        <div class="absolute inset-0 -z-10">
-            <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=2000" class="w-full h-full object-cover opacity-40">
-            <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/80 to-black"></div>
+        <div class="hero-img-container">
+            <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=2000" id="hero-bg">
+            <div class="hero-overlay"></div>
         </div>
 
-        <div class="container mx-auto px-6 md:px-12 relative">
+        <div class="container mx-auto px-6 md:px-12 relative z-10">
             <div class="max-w-3xl">
-                <div class="flex items-center gap-4 mb-6">
+                <div class="flex items-center gap-4 mb-6" id="hero-tagline">
                     <span class="h-[2px] w-12 bg-[--brand-green]"></span>
                     <span class="text-[--brand-green] uppercase tracking-[0.3em] text-xs font-bold">Votre Regard, Notre Signature</span>
                 </div>
-                <h1 class="text-6xl md:text-8xl font-extrabold leading-none mb-8 italic">
+                <h1 class="text-6xl md:text-8xl font-extrabold leading-none mb-8 italic" id="hero-title">
                     L'ÉLÉGANCE <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-[--brand-violet] to-purple-400">À DRANCY.</span>
                 </h1>
-                <div class="flex flex-wrap gap-6 mt-12">
-                    <a href="#marques" class="px-8 py-4 border border-white/30 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-white hover:text-black transition-all bg-white/5 backdrop-blur-sm">Nos Marques</a>
+                <div class="flex flex-wrap gap-6 mt-12" id="hero-btns">
+                    <a onclick="scrollToSection('#marques')" class="px-8 py-4 border border-white/30 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-white hover:text-black transition-all bg-white/5 backdrop-blur-sm cursor-pointer">Nos Marques</a>
                     <a href="tel:0148305950" class="flex items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 px-6 py-4 rounded-full group hover:border-[--brand-violet] transition-all">
                         <i data-lucide="phone-call" class="w-4 h-4 text-[--brand-green] group-hover:scale-110 transition-transform"></i>
                         <span class="text-xs font-bold tracking-widest">01 48 30 59 50</span>
@@ -355,39 +363,29 @@
                 <div>
                     <h3 class="text-[--brand-violet] font-bold uppercase tracking-widest mb-6 text-sm">Optical Concept</h3>
                     <ul class="space-y-3">
-                        <li><a href="index.html" class="footer-link text-gray-400">Notre magasin</a></li>
-                        <li><a href="index.html#collections" class="footer-link text-gray-400">Nos marques</a></li>
+                        <li><a onclick="scrollToSection('#home')" class="footer-link text-gray-400 cursor-pointer">Notre magasin</a></li>
+                        <li><a onclick="scrollToSection('#marques')" class="footer-link text-gray-400 cursor-pointer">Nos marques</a></li>
                         <li><a href="#" class="footer-link text-gray-400">Actualités</a></li>
-                        <li><a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept" target="_blank" class="footer-link text-gray-300 font-semibold border-b border-white/10 pb-1 inline-block">Opticiens Par Conviction</a></li>
                     </ul>
                 </div>
 
                 <div>
                     <h3 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Nous trouver</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                        109 AVENUE HENRI BARBUSSE<br>
-                        93700 DRANCY
-                    </p>
-                    <a href="https://www.google.com/maps/dir/?api=1&destination=109+Avenue+Henri+Barbusse+93700+Drancy" target="_blank" class="inline-block bg-white/5 hover:bg-[--brand-violet] text-white px-6 py-3 rounded-full text-xs font-bold transition-all uppercase tracking-tighter">
-                        S'y rendre
-                    </a>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">109 AVENUE HENRI BARBUSSE<br>93700 DRANCY</p>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=109+Avenue+Henri+Barbusse+93700+Drancy" target="_blank" class="inline-block bg-white/5 hover:bg-[--brand-violet] text-white px-6 py-3 rounded-full text-xs font-bold transition-all uppercase tracking-tighter">S'y rendre</a>
                 </div>
 
                 <div>
                     <h3 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Nous contacter</h3>
                     <ul class="space-y-4 mb-6">
                         <li class="flex items-center gap-3 text-gray-400 text-sm">
-                            <i data-lucide="mail" class="w-4 h-4 text-[--brand-violet]"></i>
-                            optical.concept@gmail.com
+                            <i data-lucide="mail" class="w-4 h-4 text-[--brand-violet]"></i>optical.concept@gmail.com
                         </li>
                         <li class="flex items-center gap-3 text-gray-400 text-sm">
-                            <i data-lucide="phone" class="w-4 h-4 text-[--brand-violet]"></i>
-                            01 48 30 59 50
+                            <i data-lucide="phone" class="w-4 h-4 text-[--brand-violet]"></i>01 48 30 59 50
                         </li>
                     </ul>
-                    <a href="mailto:optical.concept@gmail.com" class="inline-block bg-[--brand-violet]/20 border border-[--brand-violet]/30 hover:bg-[--brand-violet] text-white px-6 py-3 rounded-full text-xs font-bold transition-all uppercase tracking-tighter">
-                        Nous contacter
-                    </a>
+                    <a href="mailto:optical.concept@gmail.com" class="inline-block bg-[--brand-violet]/20 border border-[--brand-violet]/30 hover:bg-[--brand-violet] text-white px-6 py-3 rounded-full text-xs font-bold transition-all uppercase tracking-tighter">Nous contacter</a>
                 </div>
             </div>
 
@@ -405,12 +403,33 @@
     <script>
         lucide.createIcons();
 
+        // 1. ANIMATION D'ENTRÉE HERO (Amélioration Visuelle)
+        window.addEventListener('DOMContentLoaded', () => {
+            const tl = gsap.timeline();
+            tl.to("#hero-bg", { scale: 1, duration: 2, ease: "power2.out" })
+              .from("#hero-tagline", { x: -30, opacity: 0, duration: 0.8 }, "-=1.2")
+              .from("#hero-title", { y: 50, opacity: 0, duration: 1, skewY: 5 }, "-=0.8")
+              .from("#hero-btns", { y: 20, opacity: 0, duration: 0.8 }, "-=0.5");
+            
+            // Glider initial
+            const activeBtn = document.querySelector('.filter-btn.active');
+            if(activeBtn) gsap.set("#glider", { x: activeBtn.offsetLeft - 6, width: activeBtn.offsetWidth });
+            animateCards();
+        });
+
+        // 2. FONCTION SCROLL ANIMÉ (Amélioration Navigation)
+        function scrollToSection(id) {
+            gsap.to(window, {
+                duration: 1.2,
+                scrollTo: { y: id, offsetY: 80 },
+                ease: "power4.inOut"
+            });
+        }
+
         const coords = [48.9242, 2.4439];
         const map = L.map('map', { scrollWheelZoom: false }).setView(coords, 16);
         L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png').addTo(map);
         L.marker(coords).addTo(map);
-
-        // FORCER L'AFFICHAGE DE LA CARTE
         setTimeout(() => { map.invalidateSize(); }, 500);
 
         function animateCards() {
@@ -423,8 +442,7 @@
 
         function searchBrands() {
             let input = document.getElementById('brandSearch').value.toLowerCase();
-            let cards = document.querySelectorAll('.brand-card');
-            cards.forEach(card => {
+            document.querySelectorAll('.brand-card').forEach(card => {
                 let name = card.getAttribute('data-name');
                 card.classList.toggle('item-hidden', !name.includes(input));
             });
@@ -432,21 +450,13 @@
         }
 
         function filterSelection(category, event) {
-            const cards = document.querySelectorAll('.brand-card');
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             if(event) {
-                const clickedBtn = event.target;
+                const clickedBtn = event.currentTarget;
                 clickedBtn.classList.add('active');
-                const glider = document.getElementById('glider');
-                gsap.to(glider, {
-                    x: clickedBtn.offsetLeft - 6,
-                    width: clickedBtn.offsetWidth,
-                    duration: 0.5,
-                    ease: "power3.inOut"
-                });
+                gsap.to("#glider", { x: clickedBtn.offsetLeft - 6, width: clickedBtn.offsetWidth, duration: 0.5, ease: "power3.inOut" });
             }
-            cards.forEach(card => {
+            document.querySelectorAll('.brand-card').forEach(card => {
                 card.classList.add('item-hidden');
                 if (category === 'all' || card.classList.contains(category)) card.classList.remove('item-hidden');
             });
@@ -455,30 +465,18 @@
 
         function openBrand(name, desc) {
             const modal = document.getElementById('brand-modal');
-            const content = document.getElementById('modal-content');
-            const descContainer = document.getElementById('modal-desc');
             document.getElementById('modal-title').innerText = name;
-            
-            const paragraphs = desc.split('\n\n');
-            descContainer.innerHTML = paragraphs.map(p => `<p>${p}</p>`).join('');
-            
+            document.getElementById('modal-desc').innerHTML = desc.split('\n\n').map(p => `<p>${p}</p>`).join('');
             modal.style.display = 'flex';
             gsap.to(modal, { opacity: 1, duration: 0.3 });
-            gsap.to(content, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.2)" });
+            gsap.to("#modal-content", { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.2)" });
         }
 
         function closeModal() {
             const modal = document.getElementById('brand-modal');
-            const content = document.getElementById('modal-content');
-            gsap.to(content, { opacity: 0, scale: 0.8, duration: 0.3 });
+            gsap.to("#modal-content", { opacity: 0, scale: 0.8, duration: 0.3 });
             gsap.to(modal, { opacity: 0, duration: 0.3, onComplete: () => { modal.style.display = 'none'; }});
         }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            const activeBtn = document.querySelector('.filter-btn.active');
-            if(activeBtn) gsap.set("#glider", { x: activeBtn.offsetLeft - 6, width: activeBtn.offsetWidth });
-            animateCards();
-        });
 
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
