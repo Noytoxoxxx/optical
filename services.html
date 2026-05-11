@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Services | Optical Concept Drancy</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Dancing+Script:wght@700&display=swap');
+
+        :root {
+            --brand-violet: #663377; 
+            --brand-green: #8CC63F;  
+            --dark-bg: #0a0a0a;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+            scroll-behavior: smooth;
+        }
+
+        .font-script { font-family: 'Dancing Script', cursive; }
+
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0; height: 2px;
+            bottom: -4px; left: 0;
+            background-color: var(--brand-violet);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover {
+            border-color: var(--brand-violet);
+            background: rgba(102, 51, 119, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(102, 51, 119, 0.3);
+        }
+
+        /* Style pour les images des réseaux sociaux dans la nav */
+        .social-logo-img {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        .social-link:hover .social-logo-img {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar" class="fixed w-full z-[9999] transition-all duration-500 py-8 px-6 md:px-12 flex justify-between items-center">
+        <div class="flex flex-col leading-none">
+            <span class="text-3xl md:text-5xl font-extrabold uppercase tracking-tighter">Optical <span class="font-script text-[--brand-green] capitalize text-4xl">Concept</span></span>
+        </div>
+
+        <div class="hidden lg:flex gap-10 text-sm uppercase tracking-[0.2em] font-bold items-center">
+            <a href="#home" class="nav-link transition-colors">Accueil</a>
+            <a href="index.html#marques" class="nav-link transition-colors">Nos Marques</a>
+            <a href="services.html" class="nav-link transition-colors">Nos Services</a>
+            
+            <div class="flex items-center gap-5 px-6 border-x border-white/10">
+                <a href="https://www.instagram.com/" target="_blank" class="social-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" class="social-logo-img">
+                </a>
+                <a href="https://www.facebook.com/" target="_blank" class="social-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook" class="social-logo-img">
+                </a>
+            </div>
+
+            <a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv" target="_blank" class="bg-[--brand-violet] px-8 py-4 rounded-full hover:scale-105 transition-all shadow-lg text-white">Prendre RDV</a>
+        </div>
+    </nav>
+
+    <section class="pt-48 pb-20 container mx-auto px-6">
+        <div class="text-center mb-24">
+            <h1 class="text-6xl md:text-8xl font-black italic tracking-tighter mb-4 uppercase">
+                Expertise & <span class="text-transparent bg-clip-text bg-gradient-to-r from-[--brand-violet] to-purple-400">Services.</span>
+            </h1>
+            <div class="h-1 w-24 bg-[--brand-green] mx-auto mb-6"></div>
+            <p class="text-gray-400 uppercase tracking-[0.4em] text-xs font-bold">L'excellence au service de votre vision à Drancy</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+            
+            <div class="space-y-8">
+                <h2 class="text-2xl font-bold flex items-center gap-4 border-b border-[--brand-green] pb-4 mb-8 uppercase italic">
+                    <i data-lucide="sparkles" class="text-[--brand-green]"></i> Offres & Facilités
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="service-card p-8 rounded-[2rem]">
+                        <i data-lucide="plus-circle" class="w-6 h-6 text-[--brand-violet] mb-4"></i>
+                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Offre Iconique</h4>
+                        <p class="text-xs text-gray-400">2ème paire à 1 euro pour plus de style.</p>
+                    </div>
+                    <div class="service-card p-8 rounded-[2rem]">
+                        <i data-lucide="euro" class="w-6 h-6 text-[--brand-violet] mb-4"></i>
+                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Budget Maîtrisé</h4>
+                        <p class="text-xs text-gray-400">Reste à charge 0 & Remboursement 100%.</p>
+                    </div>
+                    <div class="service-card p-8 rounded-[2rem]">
+                        <i data-lucide="credit-card" class="w-6 h-6 text-[--brand-violet] mb-4"></i>
+                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Paiements</h4>
+                        <p class="text-xs text-gray-400">CB, Facilités & Tiers payant mutuelles.</p>
+                    </div>
+                    <div class="service-card p-8 rounded-[2rem]">
+                        <i data-lucide="file-text" class="w-6 h-6 text-[--brand-violet] mb-4"></i>
+                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Devis Gratuit</h4>
+                        <p class="text-xs text-gray-400">Transparence totale sur nos tarifs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-8">
+                <h2 class="text-2xl font-bold flex items-center gap-4 border-b border-[--brand-violet] pb-4 mb-8 uppercase italic">
+                    <i data-lucide="shield-check" class="text-[--brand-violet]"></i> Garanties & Suivi
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="service-card p-8 rounded-[2rem]">
+                        <i data-lucide="wrench" class="w-6 h-6 text-[--brand-green] mb-4"></i>
+                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Entretien</h4>
+                        <p class="text-xs text-gray-400">Réparations & ajustages offerts à vie.</p>
+                    </div>
+                    <div class="service-card p-8 rounded-[2rem]">
+                        <i data-lucide="eye" class="w-6 h-6 text-[--brand-green] mb-4"></i>
+                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Santé</h4>
+                        <p class="text-xs text-gray-400">Contrôle visuel sans RDV par nos experts.</p>
+                    </div>
+                    <div class="service-card p-8 rounded-[2rem]">
+                        <i data-lucide="check-circle" class="w-6 h-6 text-[--brand-green] mb-4"></i>
+                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Adaptation</h4>
+                        <p class="text-xs text-gray-400">Garantie sur verres progressifs & unifocaux.</p>
+                    </div>
+                    <div class="service-card p-8 rounded-[2rem]">
+                        <i data-lucide="hammer" class="w-6 h-6 text-[--brand-green] mb-4"></i>
+                        <h4 class="font-bold text-white mb-2 uppercase text-sm">Garantie Casse</h4>
+                        <p class="text-xs text-gray-400">Protection contre les accidents du quotidien.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 space-y-8">
+                <h2 class="text-2xl font-bold flex items-center gap-4 border-b border-white/20 pb-4 mb-8 uppercase italic">
+                    <i data-lucide="truck" class="text-white"></i> Proximité & Mobilité
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="service-card p-8 rounded-[2rem]">
+                        <i data-lucide="home" class="w-6 h-6 text-white mb-4"></i>
+                        <h4 class="font-bold text-white mb-2 uppercase text-sm italic">Domicile & EHPAD</h4>
+                        <p class="text-xs text-gray-400">Déplacement et livraison à domicile ou au travail.</p>
+                    </div>
+                    <div class="service-card p-8 rounded-[2rem]">
+                        <i data-lucide="accessibility" class="w-6 h-6 text-white mb-4"></i>
+                        <h4 class="font-bold text-white mb-2 uppercase text-sm italic">Accessibilité PMR</h4>
+                        <p class="text-xs text-gray-400">Magasin et livraison totalement adaptés PMR.</p>
+                    </div>
+                    <div class="service-card p-8 rounded-[2rem]">
+                        <i data-lucide="award" class="w-6 h-6 text-white mb-4"></i>
+                        <h4 class="font-bold text-white mb-2 uppercase text-sm italic">Expertise</h4>
+                        <p class="text-xs text-gray-400">Conseils personnalisés d'opticiens diplômés.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black/40 border-t border-white/5 pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+                <div>
+                    <h3 class="text-[--brand-violet] font-bold uppercase tracking-widest mb-6 text-sm">Optical Concept</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="footer-link text-gray-400">Notre magasin</a></li>
+                        <li><a href="index.html#collections" class="footer-link text-gray-400">Nos marques</a></li>
+                        <li><a href="#" class="footer-link text-gray-400">Actualités</a></li>
+                        <li><a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept" target="_blank" class="footer-link text-gray-300 font-semibold border-b border-white/10 pb-1 inline-block">Opticiens Par Conviction</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Nous trouver</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        109 AVENUE HENRI BARBUSSE<br>
+                        93700 DRANCY
+                    </p>
+                    <a href="#" target="_blank" class="inline-block bg-white/5 hover:bg-[--brand-violet] text-white px-6 py-3 rounded-full text-xs font-bold transition-all uppercase tracking-tighter">
+                        S'y rendre
+                    </a>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Nous contacter</h3>
+                    <ul class="space-y-4 mb-6">
+                        <li class="flex items-center gap-3 text-gray-400 text-sm">
+                            <i data-lucide="mail" class="w-4 h-4 text-[--brand-violet]"></i>
+                            optical.concept@gmail.com
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400 text-sm">
+                            <i data-lucide="phone" class="w-4 h-4 text-[--brand-violet]"></i>
+                            01 48 30 59 50
+                        </li>
+                    </ul>
+                    <a href="mailto:optical.concept@gmail.com" class="inline-block bg-[--brand-violet]/20 border border-[--brand-violet]/30 hover:bg-[--brand-violet] text-white px-6 py-3 rounded-full text-xs font-bold transition-all uppercase tracking-tighter">
+                        Nous contacter
+                    </a>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex gap-8">
+                    <a href="#" class="text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Mentions légales</a>
+                    <a href="#" class="text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors">CGU</a>
+                    <a href="#" class="text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Confidentialité</a>
+                </div>
+                <p class="text-[10px] text-gray-600 uppercase tracking-[0.5em]">Groupe all © - Tous droits réservés - 2026</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialisation de Lucide (Obligatoire pour voir les logos dans les cartes de services)
+        lucide.createIcons();
+
+        // Animation Navbar au scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-black/90', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-white/5');
+                nav.classList.remove('py-8');
+            } else {
+                nav.classList.remove('bg-black/90', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-white/5');
+                nav.classList.add('py-8');
+            }
+        });
+    </script>
+</body>
+</html>
