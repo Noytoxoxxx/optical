@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Optical Concept Drancy | Haute Optique</title>
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    <script src="[https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js](https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js)"></script>
+    <script src="[https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js](https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js)"></script>
+    <script src="[https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js](https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js)"></script>
+    <script src="[https://unpkg.com/lucide@latest](https://unpkg.com/lucide@latest)"></script>
     
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="[https://unpkg.com/leaflet@1.9.4/dist/leaflet.css](https://unpkg.com/leaflet@1.9.4/dist/leaflet.css)" />
+    <script src="[https://unpkg.com/leaflet@1.9.4/dist/leaflet.js](https://unpkg.com/leaflet@1.9.4/dist/leaflet.js)"></script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Dancing+Script:wght@700&display=swap');
+        @import url('[https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Dancing+Script:wght@700&display=swap](https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Dancing+Script:wght@700&display=swap)');
 
         :root {
             --brand-violet: #663377; 
@@ -77,21 +77,22 @@
         }
         .social-link:hover .social-logo-img { transform: scale(1.1); }
 
-        /* --- MENU MOBILE --- */
-        #mobile-menu {
+        /* --- NOUVEAU MENU MOBILE (TRIGGER CLIP-PATH) --- */
+        #mobile-menu-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(10, 10, 10, 0.98);
+            background: black;
             z-index: 10000;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 2rem;
-            transform: translateX(100%);
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            clip-path: circle(0% at 100% 0%);
+            transition: clip-path 0.6s cubic-bezier(0.19, 1, 0.22, 1);
         }
-        #mobile-menu.active { transform: translateX(0); }
+        #mobile-menu-overlay.active {
+            clip-path: circle(150% at 100% 0%);
+        }
 
         .brand-card {
             background: white;
@@ -214,7 +215,7 @@
 </head>
 <body>
 
-    <nav id="navbar" class="fixed w-full z-[999] transition-all duration-500 py-6 md:py-8 px-6 md:px-12 flex justify-between items-center">
+    <nav id="navbar" class="fixed w-full z-[9999] transition-all duration-500 py-6 md:py-8 px-6 md:px-12 flex justify-between items-center">
         <div class="flex flex-col leading-none">
             <span class="text-2xl md:text-5xl font-extrabold uppercase tracking-tighter">Optical <span class="font-script text-[--brand-green] capitalize text-3xl md:text-4xl">Concept</span></span>
         </div>
@@ -225,36 +226,50 @@
             <a href="services.html" class="nav-link transition-colors">Nos Services</a>
             
             <div class="flex items-center gap-5 px-6 border-x border-white/10">
-                <a href="https://www.instagram.com/optical.concept/" target="_blank" class="social-link">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" class="social-logo-img">
+                <a href="[https://www.instagram.com/optical.concept/](https://www.instagram.com/optical.concept/)" target="_blank" class="social-link">
+                    <img src="[https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg](https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg)" alt="Instagram" class="social-logo-img">
                 </a>
-                <a href="https://www.facebook.com/opticalconcept/" target="_blank" class="social-link">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook" class="social-logo-img">
+                a href="[https://www.facebook.com/opticalconcept/](https://www.facebook.com/opticalconcept/)" target="_blank" class="social-link">
+                    <img src="[https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg](https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg)" alt="Facebook" class="social-logo-img">
                 </a>
             </div>
 
-            <a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv" target="_blank" class="bg-[--brand-violet] px-8 py-4 rounded-full hover:scale-105 transition-all shadow-lg text-white">Prendre RDV</a>
+            <a href="[https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv](https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv)" target="_blank" class="bg-[--brand-violet] px-8 py-4 rounded-full hover:scale-105 transition-all shadow-lg text-white">Prendre RDV</a>
         </div>
 
-        <button id="burger-btn" class="lg:hidden z-[11000] text-white">
-            <i data-lucide="menu" id="burger-icon" class="w-8 h-8"></i>
+        <button id="menu-open-btn" class="lg:hidden flex flex-col gap-1.5 p-2 focus:outline-none">
+            <span class="w-8 h-0.5 bg-white"></span>
+            <span class="w-8 h-0.5 bg-white"></span>
+            <span class="w-8 h-0.5 bg-white"></span>
         </button>
     </nav>
 
-    <div id="mobile-menu">
-        <a onclick="closeMobileMenu(); scrollToSection('#home')" class="text-2xl font-bold uppercase tracking-widest">Accueil</a>
-        <a onclick="closeMobileMenu(); scrollToSection('#marques')" class="text-2xl font-bold uppercase tracking-widest">Nos Marques</a>
-        <a href="services.html" class="text-2xl font-bold uppercase tracking-widest">Nos Services</a>
-        <div class="flex gap-8 my-4">
-            <a href="https://www.instagram.com/optical.concept/" target="_blank"><i data-lucide="instagram" class="w-8 h-8"></i></a>
-            <a href="https://www.facebook.com/opticalconcept/" target="_blank"><i data-lucide="facebook" class="w-8 h-8"></i></a>
+    <div id="mobile-menu-overlay">
+        <button id="menu-close-btn" class="absolute top-8 right-8 p-2">
+            <i data-lucide="x" class="w-10 h-10 text-white"></i>
+        </button>
+
+        <div class="flex flex-col items-center gap-8 text-center">
+            <a onclick="closeMobileMenu(); scrollToSection('#home')" class="text-3xl font-black uppercase italic tracking-tighter">Accueil</a>
+            <a onclick="closeMobileMenu(); scrollToSection('#marques')" class="text-3xl font-black uppercase italic tracking-tighter">Nos Marques</a>
+            <a href="services.html" class="text-3xl font-black uppercase italic tracking-tighter">Nos Services</a>
+            
+            <div class="flex gap-8 my-4">
+                <a href="[https://www.instagram.com/optical.concept/](https://www.instagram.com/optical.concept/)" target="_blank">
+                    <img src="[https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg](https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg)" class="w-10 h-10" alt="Insta">
+                </a>
+                a href="[https://www.facebook.com/opticalconcept/](https://www.facebook.com/opticalconcept/)" target="_blank">
+                    <img src="[https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg](https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg)" class="w-10 h-10" alt="FB">
+                </a>
+            </div>
+
+            <a href="[https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv](https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv)" target="_blank" class="bg-[--brand-violet] px-10 py-5 rounded-full text-white font-black uppercase tracking-widest text-sm">Prendre RDV</a>
         </div>
-        <a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv" target="_blank" class="bg-[--brand-violet] px-10 py-4 rounded-full font-bold uppercase text-sm">Prendre RDV</a>
     </div>
 
     <section id="home" class="relative h-screen flex items-center overflow-hidden">
         <div class="hero-img-container">
-            <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=2000" id="hero-bg">
+            <img src="[https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=2000](https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=2000)" id="hero-bg">
             <div class="hero-overlay"></div>
         </div>
 
@@ -281,237 +296,393 @@
     <section id="marques" class="py-24 bg-black">
         <div class="container mx-auto px-6">
             <div class="mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-8">Nos <br><span class="text-gray-600 italic font-light">Marques</span></h2>
+                <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-8">Nos <br><span class="text-gray-600 italic font-light"><Marques</span></h2>
                 
                 <div class="flex flex-col lg:flex-row gap-6 justify-between items-center">
-                    <div class="relative w-full lg:max-w-md">
-                        <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5"></i>
-                        <input type="text" id="brandSearch" onkeyup="searchBrands()" placeholder="Rechercher une marque..." class="search-bar">
+img src="carrera.jpg" alt="Carrera"></div>
+                    <p class="text-black font-bold text-center text-sm uppercase">Carrera                    <div class="relative w-full lg:max-w-md">
+                        <i data-lucide="search" class="absolute left</p>
+                    <button onclick="openBrand('Carrera', '...')" class="mt-4 uppercase">En savoir plus</button>
+                </div>
+                -4 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5"></i>
+                        <div class="brand-card luxe createur" data-name="cazal">
+                    <div class="brand-logo-container"><img src="caz<input type="text" id="brandSearch" onkeyup="searchBrands()" placeholder="Rechercher une marque..." class="search-bar">
                     </div>
 
                     <div class="filter-container">
                         <div class="glider" id="glider"></div>
-                        <button onclick="filterSelection('all', event)" class="filter-btn active">Tous</button>
-                        <button onclick="filterSelection('luxe', event)" class="filter-btn">Luxe</button>
-                        <button onclick="filterSelection('createur', event)" class="filter-btn">Créateur</button>
+                        <button onclickal.png" alt="Cazal"></div>
+                    <p class="text-black font-bold text-center text-sm uppercase">Cazal</p>
+                    <button onclick="openBrand('Cazal', '...')" class="mt-4 uppercase">En savoir plus</button>
+                </div>
+                <="filterSelection('all', event)" class="filter-btn active">Tous</button>
+                        <button onclick="filterSelection('luxe', eventdiv class="brand-card createur" data-name="dsquared2">
+                    <div class="brand-logo-container"><img src="Dsquared2)" class="filter-btn">Luxe</button>
+                        <button onclick="filterSelection('createur', event)" class="filter-btn">.png" alt="Dsquared2"></div>
+                    <p class="text-black font-bold text-center text-sm uppercase">Dsquared2</p>Créateur</button>
                         <button onclick="filterSelection('sport', event)" class="filter-btn">Solaire</button>
                     </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="brandGrid">
-                <div class="brand-card sport createur" data-name="carrera">
-                    <div class="brand-logo-container"><img src="carrera.jpg" alt="Carrera"></div>
-                    <p class="text-black font-bold text-center text-sm uppercase">Carrera</p>
-                    <button onclick="openBrand('Carrera', '...')" class="mt-4 uppercase">En savoir plus</button>
-                </div>
-                <div class="brand-card luxe createur" data-name="cazal">
-                    <div class="brand-logo-container"><img src="cazal.png" alt="Cazal"></div>
-                    <p class="text-black font-bold text-center text-sm uppercase">Cazal</p>
-                    <button onclick="openBrand('Cazal', '...')" class="mt-4 uppercase">En savoir plus</button>
-                </div>
-                <div class="brand-card createur" data-name="dsquared2">
-                    <div class="brand-logo-container"><img src="Dsquared2.png" alt="Dsquared2"></div>
-                    <p class="text-black font-bold text-center text-sm uppercase">Dsquared2</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4
                     <button onclick="openBrand('Dsquared2', '...')" class="mt-4 uppercase">En savoir plus</button>
                 </div>
-                <div class="brand-card sport" data-name="fila">
-                    <div class="brand-logo-container"><img src="fila.png" alt="Fila"></div>
+                <div gap-6" id="brandGrid">
+                <div class="brand-card sport createur" data-name="carrera">
+                    < class="brand-card sport" data-name="fila">
+                    <div class="brand-logo-container"><img src="fila.png" alt="Filadiv class="brand-logo-container"><img src="carrera.jpg" alt="Carrera"></div>
+                    <p class="text-black"></div>
                     <p class="text-black font-bold text-center text-sm uppercase">Fila</p>
-                    <button onclick="openBrand('Fila', '...')" class="mt-4 uppercase">En savoir plus</button>
+                    <button onclick="openBrand(' font-bold text-center text-sm uppercase">Carrera</p>
+                    <button onclick="openBrand('Carrera', '...')" classFila', '...')" class="mt-4 uppercase">En savoir plus</button>
                 </div>
-                <div class="brand-card luxe" data-name="givenchy">
+                <div class="brand-card luxe" data-name="mt-4 uppercase">En savoir plus</button>
+                </div>
+                <div class="brand-card luxe createur" data-name="="givenchy">
                     <div class="brand-logo-container"><img src="Givenchy.png" alt="Givenchy"></div>
-                    <p class="text-black font-bold text-center text-sm uppercase">Givenchy</p>
-                    <button onclick="openBrand('Givenchy', '...')" class="mt-4 uppercase">En savoir plus</button>
+                    <p class="cazal">
+                    <div class="brand-logo-container"><img src="cazal.png" alt="Cazal"></div>text-black font-bold text-center text-sm uppercase">Givenchy</p>
+                    <button onclick="openBrand('Givenchy', '...')" class="
+                    <p class="text-black font-bold text-center text-sm uppercase">Cazal</p>
+                    <button onclick="mt-4 uppercase">En savoir plus</button>
                 </div>
                 <div class="brand-card createur" data-name="guess">
-                    <div class="brand-logo-container"><img src="Guess.png" alt="Guess"></div>
-                    <p class="text-black font-bold text-center text-sm uppercase">Guess</p>
-                    <button onclick="openBrand('Guess', '...')" class="mt-4 uppercase">En savoir plus</button>
+                    <divopenBrand('Cazal', '...')" class="mt-4 uppercase">En savoir plus</button>
                 </div>
+                <div class=" class="brand-logo-container"><img src="Guess.png" alt="Guess"></div>
+                    <p class="text-black font-bold text-center textbrand-card createur" data-name="dsquared2">
+                    <div class="brand-logo-container"><img src="Dsquared-sm uppercase">Guess</p>
+                    <button onclick="openBrand('Guess', '...')" class="mt-4 uppercase">En savoir plus</button>
+2.png" alt="Dsquared2"></div>
+                    <p class="text-black font-bold text-center text-sm uppercase">D                </div>
                 <div class="brand-card luxe createur" data-name="hugo boss">
-                    <div class="brand-logo-container"><img src="Hugo Boss.png" alt="Hugo Boss"></div>
-                    <p class="text-black font-bold text-center text-sm uppercase">Hugo Boss</p>
+                    <div class="brand-logo-container"><imgsquared2</p>
+                    <button onclick="openBrand('Dsquared2', '...')" class="mt-4 uppercase">En savoir plus</ src="Hugo Boss.png" alt="Hugo Boss"></div>
+                    <p class="text-black font-bold text-center text-sm uppercase">Hugo Boss</button>
+                </div>
+                <div class="brand-card sport" data-name="fila">
+                    <div class="brand-logo-p>
                     <button onclick="openBrand('Hugo Boss', '...')" class="mt-4 uppercase">En savoir plus</button>
                 </div>
-                <div class="brand-card createur sport" data-name="ray-ban">
-                    <div class="brand-logo-container"><img src="Rayban-Logo.webp" alt="Ray-Ban"></div>
-                    <p class="text-black font-bold text-center text-sm uppercase">Ray-Ban</p>
+                <container"><img src="fila.png" alt="Fila"></div>
+                    <p class="text-black font-bold text-center text-div class="brand-card createur sport" data-name="ray-ban">
+                    <div class="brand-logo-container"><img src="Rayban-sm uppercase">Fila</p>
+                    <button onclick="openBrand('Fila', '...')" class="mt-4 uppercase">En savoirLogo.webp" alt="Ray-Ban"></div>
+                    <p class="text-black font-bold text-center text-sm uppercase">Ray-Ban</p plus</button>
+                </div>
+                <div class="brand-card luxe" data-name="givenchy">
+                    <div class="brand>
                     <button onclick="openBrand('Ray-Ban', '...')" class="mt-4 uppercase">En savoir plus</button>
                 </div>
-            </div>
+            </div>-logo-container"><img src="Givenchy.png" alt="Givenchy"></div>
+                    <p class="text-black font-bold text
         </div>
     </section>
 
     <div id="brand-modal" onclick="closeModal()">
-        <div id="modal-content" class="bg-zinc-900 border border-white/10 p-10 rounded-[2rem] max-w-2xl w-full relative" onclick="event.stopPropagation()">
-            <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white transition-colors"><i data-lucide="x"></i></button>
-            <h3 id="modal-title" class="text-3xl font-bold uppercase italic text-[--brand-violet] mb-6 border-b border-white/5 pb-4">Titre</h3>
-            <div id="modal-desc" class="text-gray-400 leading-relaxed space-y-4 text-base">Description...</div>
-            <button onclick="closeModal()" class="mt-10 bg-white/5 hover:bg-white/10 text-white w-full py-4 rounded-xl font-bold uppercase tracking-widest transition-all border border-white/10">Fermer</button>
+        <div id="modal-content" class="-center text-sm uppercase">Givenchy</p>
+                    <button onclick="openBrand('Givenchy', '...')" class="mt-4bg-zinc-900 border border-white/10 p-10 rounded-[2rem] max-w-2xl w-full relative" onclick=" uppercase">En savoir plus</button>
+                </div>
+                <div class="brand-card createur" data-name="guess">
+                    <event.stopPropagation()">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white transition-div class="brand-logo-container"><img src="Guess.png" alt="Guess"></div>
+                    <p class="text-black font-colors"><i data-lucide="x"></i></button>
+            <h3 id="modal-title" class="text-3xl font-bold uppercase italicbold text-center text-sm uppercase">Guess</p>
+                    <button onclick="openBrand('Guess', '...')" class="mt-4 text-[--brand-violet] mb-6 border-b border-white/5 pb-4">Titre</h3>
+            <div id="modal-desc" class uppercase">En savoir plus</button>
+                </div>
+                <div class="brand-card luxe createur" data-name="hugo boss">="text-gray-400 leading-relaxed space-y-4 text-base">Description...</div>
+            <button onclick="closeModal()" class="mt-
+                    <div class="brand-logo-container"><img src="Hugo Boss.png" alt="Hugo Boss"></div>
+                    <p class="10 bg-white/5 hover:bg-white/10 text-white w-full py-4 rounded-xl font-bold uppercase tracking-widest transitiontext-black font-bold text-center text-sm uppercase">Hugo Boss</p>
+                    <button onclick="openBrand('Hugo Boss', '...')" class="mt-4 uppercase">En savoir plus</button>
+                </div>
+                <div class="brand-card createur sport" data-all border border-white/10">Fermer</button>
         </div>
     </div>
 
     <section id="contact" class="py-24 bg-[#050505]">
         <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="grid grid-cols-1 lg-name="ray-ban">
+                    <div class="brand-logo-container"><img src="Rayban-Logo.webp" alt="Ray:grid-cols-2 gap-16 items-center">
                 <div class="space-y-10">
-                    <h2 class="text-5xl md:text-6xl font-bold tracking-tighter italic leading-none">NOUS <br><span class="text-[--brand-violet]">TROUVER.</span></h2>
+                    <h2 class="text--Ban"></div>
+                    <p class="text-black font-bold text-center text-sm uppercase">Ray-Ban</p>
+                    5xl md:text-6xl font-bold tracking-tighter italic leading-none">NOUS <br><span class="text-[--brand-violet]">TRO<button onclick="openBrand('Ray-Ban', '...')" class="mt-4 uppercase">En savoir plus</button>
+                </div>
+            UVER.</span></h2>
                     <div class="space-y-8">
                         <div class="flex gap-6 items-start group">
-                            <div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border border-white/10 bg-white/5">
+                            <div</div>
+        </div>
+    </section>
+
+    <div id="brand-modal" onclick="closeModal()">
+        <div id="modal- class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border border-white/10 bg-white/5content" class="bg-zinc-900 border border-white/10 p-10 rounded-[2rem] max-w-2">
                                 <i data-lucide="map-pin" class="text-[--brand-violet] w-5 h-5"></i>
                             </div>
-                            <div>
+                            xl w-full relative" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-<div>
                                 <h4 class="font-bold text-lg uppercase tracking-tighter">Adresse Boutique</h4>
-                                <p class="text-gray-400">109 Avenue Henri Barbusse,<br>93700 Drancy, France</p>
+                                <p class="text-gray-400gray-400 hover:text-white transition-colors"><i data-lucide="x"></i></button>
+            <h3 id">109 Avenue Henri Barbusse,<br>93700 Drancy, France</p>
                             </div>
                         </div>
-                        <div class="flex gap-6 items-start group">
+                        <div class="="modal-title" class="text-3xl font-bold uppercase italic text-[--brand-violet] mb-6 border-b border-whiteflex gap-6 items-start group">
                             <div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border border-white/10 bg-white/5">
-                                <i data-lucide="clock" class="text-[--brand-green] w-5 h-5"></i>
+                                <i data-lucide="clock" class="text-[--brand-green] w-/5 pb-4">Titre</h3>
+            <div id="modal-desc" class="text-gray-400 leading-relaxed space5 h-5"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-lg uppercase tracking-tighter">Horaires de Visite</h4>
-                                <p class="text-gray-400">Lundi - Samedi : 10:00 – 19:00</p>
+                                <h4 class="font-bold text-lg uppercase tracking-tighter">Horaires de Visite-y-4 text-base">Description...</div>
+            <button onclick="closeModal()" class="mt-10 bg-white/5 hover:bg-white/10 text-white w-full py-4 rounded-xl font-bold uppercase tracking-widest transition-all border border</h4>
+                                <p class="text-gray-400">Lundi - Samedi : 10:00 – 19:00</p-white/10">Fermer</button>
+        </div>
+    </div>
+
+    <section id="contact" class="py-24>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="h-[400px] md:h-[550px] rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl relative">
+                <div class="h-[400px] md:h-[550px] rounded bg-[#050505]">
+        <div class="container mx-auto px-6">
+            <div class="grid grid--[2rem] md:rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl relative">
+                    <div id="map"></div>cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-10">
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black/40 border-t border-white/5 pt                    <h2 class="text-5xl md:text-6xl font-bold tracking-tighter italic leading-none">NOUS <br-16 pb-8 text-center md:text-left">
+        <div class="container mx-auto px-6">
+            <div class="grid><span class="text-[--brand-violet]">TROUVER.</span></h2>
+                    <div class="space-y-8">
+                        <div class="flex gap-6 items-start group">
+                            <div class="w-12 h-12 rounded-2xl flex items grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+                <div>
+                    <h3 class="text-[--brand-violet] font-bold uppercase tracking-widest mb-6 text-sm">Optical Concept</h3>
+                    <ul class="space-y-3 text-gray-4-center justify-center shrink-0 border border-white/10 bg-white/5">
+                                <i data-lucide="map-pin" class="text-[--brand-violet] w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="00 text-sm">
+                        <li><a onclick="scrollToSection('#home')" class="cursor-pointer">Notre magasin</a></li>
+                        <li><a onclick="scrollToSection('#marques')" class="cursor-pointer">Nos marques</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-font-bold text-lg uppercase tracking-tighter">Adresse Boutique</h4>
+                                <p class="text-gray-400">109 Avenue Henri Barbusse,<br>93700 Drancy, France</p>
+                            </div>
+                        </div>
+                        <div class="bold uppercase tracking-widest mb-6 text-sm">Nous trouver</h3>
+                    <p class="text-gray-400 text-sm mb-6">flex gap-6 items-start group">
+                            <div class="w-12 h-12 rounded-2xl flex items-center justify109 AVENUE HENRI BARBUSSE<br>93700 DRANCY</p>
+                </div>
+                <div>
+                    <h3 class="text-center shrink-0 border border-white/10 bg-white/5">
+                                <i data-lucide="clock" class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Contact</h3>
+                    <p class="text-gray-400 text-sm">-[--brand-green] w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-01 48 30 59 50</p>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-[10px] textlg uppercase tracking-tighter">Horaires de Visite</h4>
+                                <p class="text-gray-400">Lundi - Samedi-gray-600 uppercase tracking-[0.5em]">Groupe all © 2026</p>
+            </div>
+        </div>
+    </footer>
+
+ : 10:00 – 19:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <    <script>
+        lucide.createIcons();
+
+        // --- GESTION MENU MOBILE ---
+        const burgerBtn = document.getElementById('burger-btn');div class="h-[400px] md:h-[550px] rounded-[2rem] md:rounded-[3rem] overflow
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        burgerBtn.addEventListener('click', () => {
+            const isActive = mobileMenu.classList.-hidden border border-white/10 shadow-2xl relative">
                     <div id="map"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-black/40 border-t border-white/5 pt-16 pb-8 text-center md:text-left">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-                <div>
-                    <h3 class="text-[--brand-violet] font-bold uppercase tracking-widest mb-6 text-sm">Optical Concept</h3>
-                    <ul class="space-y-3 text-gray-400 text-sm">
-                        <li><a onclick="scrollToSection('#home')" class="cursor-pointer">Notre magasin</a></li>
-                        <li><a onclick="scrollToSection('#marques')" class="cursor-pointer">Nos marques</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Nous trouver</h3>
-                    <p class="text-gray-400 text-sm mb-6">109 AVENUE HENRI BARBUSSE<br>93700 DRANCY</p>
-                </div>
-                <div>
-                    <h3 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Contact</h3>
-                    <p class="text-gray-400 text-sm">01 48 30 59 50</p>
-                </div>
-            </div>
-            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                <p class="text-[10px] text-gray-600 uppercase tracking-[0.5em]">Groupe all © 2026</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        lucide.createIcons();
-
-        // --- GESTION MENU MOBILE ---
-        const burgerBtn = document.getElementById('burger-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const burgerIcon = document.getElementById('burger-icon');
-
-        burgerBtn.addEventListener('click', () => {
-            const isActive = mobileMenu.classList.toggle('active');
-            burgerIcon.setAttribute('data-lucide', isActive ? 'x' : 'menu');
-            lucide.createIcons();
+    <footer class="bg-black/40 border-t border-white/5 pt-16 pb-toggle('active');
             document.body.style.overflow = isActive ? 'hidden' : '';
         });
 
         function closeMobileMenu() {
-            mobileMenu.classList.remove('active');
-            burgerIcon.setAttribute('data-lucide', 'menu');
-            lucide.createIcons();
+            mobileMenu8 text-center md:text-left">
+        <div class="container mx-auto px-6">
+            <div class="grid grid.classList.remove('active');
             document.body.style.overflow = '';
         }
 
-        // --- TES SCRIPTS GSAP (IDENTIQUES) ---
-        window.addEventListener('DOMContentLoaded', () => {
+        // --- TES SCRIPTS GSAP ---
+        window.addEventListener('-cols-1 md:grid-cols-3 gap-12 mb-16">
+                <div>
+                    <h3 class="text-DOMContentLoaded', () => {
             const tl = gsap.timeline();
-            tl.to("#hero-bg", { scale: 1, duration: 2, ease: "power2.out" })
-              .from("#hero-tagline", { x: -30, opacity: 0, duration: 0.8 }, "-=1.2")
-              .from("#hero-title", { y: 50, opacity: 0, duration: 1, skewY: 5 }, "-=0.8")
-              .from("#hero-btns", { y: 20, opacity: 0, duration: 0.8 }, "-=0.5");
+            tl.to("#hero-bg", { scale: 1, duration: 2, ease[--brand-violet] font-bold uppercase tracking-widest mb-6 text-sm">Optical Concept</h3>
+                    <ul class="space-y: "power2.out" })
+              .from("#hero-tagline", { x: -30, opacity: 0, duration: 0-3 text-gray-400 text-sm">
+                        <li><a onclick="scrollToSection('#home')" class="cursor-pointer">Notre.8 }, "-=1.2")
+              .from("#hero-title", { y: 50, opacity: 0, duration: 1, skew magasin</a></li>
+                        <li><a onclick="scrollToSection('#marques')" class="cursor-pointer">Nos marques</a></li>
+                    </ul>
+                </div>Y: 5 }, "-=0.8")
+              .from("#hero-btns", { y: 20, opacity: 0, duration: 0
+                <div>
+                    <h3 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Nous trouver</h3>
+.8 }, "-=0.5");
             
             const activeBtn = document.querySelector('.filter-btn.active');
-            if(activeBtn) gsap.set("#glider", { x: activeBtn.offsetLeft - 6, width: activeBtn.offsetWidth });
+            if(activeBtn) gsap.                    <p class="text-gray-400 text-sm mb-6">109 AVENUE HENRI BARBUSSE<br>9set("#glider", { x: activeBtn.offsetLeft - 6, width: activeBtn.offsetWidth });
             animateCards();
         });
 
-        function scrollToSection(id) {
+        function scrollToSection3700 DRANCY</p>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold uppercase tracking-wid(id) {
             gsap.to(window, {
                 duration: 1.2,
-                scrollTo: { y: id, offsetY: 80 },
+                scrollTo: { y: id, offsetY: 8est mb-6 text-sm">Contact</h3>
+                    <p class="text-gray-400 text-sm">01 48 30 59 50</p>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-0 },
                 ease: "power4.inOut"
             });
         }
 
         const coords = [48.9242, 2.4439];
         const map = L.map('map', { scrollWheelZoom: false }).setView(coords, 16);
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png').addTo(map);
+        L.tileLayer('https://{s}[.basemaps.cartocdn.com/dark_all/](https://.basemaps.cartocdn.com/dark_all/){z}/{x}/{y}{r}.png').addTo(map);white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-[10px] text-gray-600 uppercase tracking-[0.5em]">Groupe all © 2026</p>
+            </div>
         L.marker(coords).addTo(map);
         setTimeout(() => { map.invalidateSize(); }, 500);
 
         function animateCards() {
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // --- GESTION MENU MOBILE (TRIGGER VERSION) ---
+        
             const visibleCards = document.querySelectorAll('.brand-card:not(.item-hidden)');
-            gsap.set(visibleCards, { opacity: 0, y: 30, scale: 0.9 });
+            gsap.set(visibleCards, { opacity: 0,const menuOpenBtn = document.getElementById('menu-open-btn');
+        const menuCloseBtn = document.getElementById('menu-close-btn'); y: 30, scale: 0.9 });
             gsap.to(visibleCards, {
-                opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.1, ease: "power2.out", overwrite: true
+                opacity: 1, y: 0,
+        const menuOverlay = document.getElementById('mobile-menu-overlay');
+
+        menuOpenBtn.addEventListener('click', () => {
+            menu scale: 1, duration: 0.5, stagger: 0.1, ease: "power2.out", overwrite: true
             });
-        }
+        }Overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        menuCloseBtn.addEventListener('click',
 
         function searchBrands() {
             let input = document.getElementById('brandSearch').value.toLowerCase();
-            document.querySelectorAll('.brand-card').forEach(card => {
+            document.querySelectorAll('.brand-card').forEach(card closeMobileMenu);
+
+        function closeMobileMenu() {
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow => {
                 let name = card.getAttribute('data-name');
                 card.classList.toggle('item-hidden', !name.includes(input));
-            });
+             = '';
+        }
+
+        // --- SCRIPTS GSAP & AUTRES ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const tl = gsap.});
             animateCards();
         }
 
         function filterSelection(category, event) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.timeline();
+            tl.to("#hero-bg", { scale: 1, duration: 2, ease: "power2.out" })classList.remove('active'));
             if(event) {
                 const clickedBtn = event.currentTarget;
                 clickedBtn.classList.add('active');
-                gsap.to("#glider", { x: clickedBtn.offsetLeft - 6, width: clickedBtn.offsetWidth, duration: 0.5, ease: "power3.inOut" });
+                
+              .from("#hero-tagline", { x: -30, opacity: 0, duration: 0.8 }, "-=1.2gsap.to("#glider", { x: clickedBtn.offsetLeft - 6, width: clickedBtn.offsetWidth, duration: 0.5, ease: "")
+              .from("#hero-title", { y: 50, opacity: 0, duration: 1, skewY: 5power3.inOut" });
             }
             document.querySelectorAll('.brand-card').forEach(card => {
-                card.classList.add('item-hidden');
+                card.classList.add('item-hidden }, "-=0.8")
+              .from("#hero-btns", { y: 20, opacity: 0, duration: 0');
                 if (category === 'all' || card.classList.contains(category)) card.classList.remove('item-hidden');
             });
-            animateCards();
+            animateCards.8 }, "-=0.5");
+            
+            const activeBtn = document.querySelector('.filter-btn.active');
+            if(active();
         }
 
         function openBrand(name, desc) {
             const modal = document.getElementById('brand-modal');
-            document.getElementById('modal-title').innerText = name;
+            document.getElementById('modal-Btn) gsap.set("#glider", { x: activeBtn.offsetLeft - 6, width: activeBtn.offsetWidth });
+            animateCards();title').innerText = name;
             document.getElementById('modal-desc').innerHTML = desc;
             modal.style.display = 'flex';
-            gsap.to(modal, { opacity: 1, duration: 0.3 });
-            gsap.to("#modal-content", { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.2)" });
+            gsap.
+        });
+
+        function scrollToSection(id) {
+            gsap.to(window, {
+                duration: 1.2,
+to(modal, { opacity: 1, duration: 0.3 });
+            gsap.to("#modal-content", { opacity: 1, scale:                scrollTo: { y: id, offsetY: 80 },
+                ease: "power4.inOut"
+            });
+        }
+
+ 1, duration: 0.5, ease: "back.out(1.2)" });
         }
 
         function closeModal() {
-            const modal = document.getElementById('brand-modal');
-            gsap.to("#modal-content", { opacity: 0, scale: 0.8, duration: 0.3 });
-            gsap.to(modal, { opacity: 0, duration: 0.3, onComplete: () => { modal.style.display = 'none'; }});
+            const modal =        const coords = [48.9242, 2.4439];
+        const map = L.map('map', document.getElementById('brand-modal');
+            gsap.to("#modal-content", { opacity: 0, scale: 0.8, duration: 0 { scrollWheelZoom: false }).setView(coords, 16);
+        L.tileLayer('https://{s}.basemaps.cart.3 });
+            gsap.to(modal, { opacity: 0, duration: 0.3, onComplete: () => { [modal.style.displayocdn.com/dark_all/](https://modal.style.displayocdn.com/dark_all/){z}/{x}/{y}{r}.png').addTo(map);
+        L.marker(coords).addTo( = 'none'; }});
         }
 
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('bg-black/90', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-white/5');
+            if (windowmap);
+        setTimeout(() => { map.invalidateSize(); }, 500);
+
+        function animateCards() {
+            const visibleCards =.scrollY > 50) {
+                nav.classList.add('bg-black/90', 'backdrop-blur-xl', 'py-4', ' document.querySelectorAll('.brand-card:not(.item-hidden)');
+            gsap.set(visibleCards, { opacity: 0, y:border-b', 'border-white/5');
             } else {
-                nav.classList.remove('bg-black/90', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-white/5');
+                nav.classList.remove('bg-black/90', 'backdrop-blur- 30, scale: 0.9 });
+            gsap.to(visibleCards, {
+                opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.1, ease: "power2.out", overwrite: truexl', 'py-4', 'border-b', 'border-white/5');
             }
         });
     </script>
