@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Optical Concept Drancy | Haute Optique</title>
     
-    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
-    <script src="[https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js](https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js)"></script>
-    <script src="[https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js](https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js)"></script>
-    <script src="[https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js](https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js)"></script>
-    <script src="[https://unpkg.com/lucide@latest](https://unpkg.com/lucide@latest)"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     
-    <link rel="stylesheet" href="[https://unpkg.com/leaflet@1.9.4/dist/leaflet.css](https://unpkg.com/leaflet@1.9.4/dist/leaflet.css)" />
-    <script src="[https://unpkg.com/leaflet@1.9.4/dist/leaflet.js](https://unpkg.com/leaflet@1.9.4/dist/leaflet.js)"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <style>
-        @import url('[https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Dancing+Script:wght@700&display=swap](https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Dancing+Script:wght@700&display=swap)');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Dancing+Script:wght@700&display=swap');
 
         :root {
             --brand-violet: #663377; 
@@ -35,7 +35,7 @@
 
         .font-script { font-family: 'Dancing Script', cursive; }
 
-        /* --- AMÉLIORATION ARRIÈRE-PLAN --- */
+        /* --- BACKGROUND HERO --- */
         .hero-overlay {
             position: absolute;
             inset: 0;
@@ -59,6 +59,7 @@
             transform: scale(1.1);
         }
 
+        /* --- NAVIGATION --- */
         .nav-link { position: relative; cursor: pointer; }
         .nav-link::after {
             content: '';
@@ -75,25 +76,29 @@
             object-fit: contain;
             transition: transform 0.3s ease;
         }
-        .social-link:hover .social-logo-img { transform: scale(1.1); }
 
-        /* --- NOUVEAU MENU MOBILE (TRIGGER CLIP-PATH) --- */
+        /* --- MENU MOBILE CLIP-PATH --- */
         #mobile-menu-overlay {
             position: fixed;
             inset: 0;
             background: black;
             z-index: 10000;
-            display: flex;
+            display: flex; /* Toujours en flex pour le contenu */
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            /* CACHÉ PAR DÉFAUT */
             clip-path: circle(0% at 100% 0%);
             transition: clip-path 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+            pointer-events: none; /* Désactivé tant qu'il est fermé */
         }
+        
         #mobile-menu-overlay.active {
             clip-path: circle(150% at 100% 0%);
+            pointer-events: all; /* Réactivé quand ouvert */
         }
 
+        /* --- MARQUES / FILTRES --- */
         .brand-card {
             background: white;
             border-radius: 1.5rem;
@@ -103,13 +108,7 @@
             align-items: center;
             justify-content: center;
             min-height: 250px;
-            border: 1px solid rgba(255,255,255,0.05);
-            will-change: transform, opacity;
-        }
-
-        .brand-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(102, 51, 119, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .brand-logo-container {
@@ -118,7 +117,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .brand-logo-container img {
@@ -134,158 +133,121 @@
             background: rgba(255,255,255,0.05);
             padding: 6px;
             border-radius: 9999px;
-            border: 1px solid rgba(255,255,255,0.1);
             display: inline-flex;
-            align-items: center;
             overflow-x: auto;
-            max-width: 100%;
         }
 
         .filter-btn {
             position: relative;
             z-index: 2;
-            padding: 8px 24px;
+            padding: 8px 20px;
             font-size: 10px;
             font-weight: 800;
             text-transform: uppercase;
-            transition: color 0.4s ease;
             cursor: pointer;
-            white-space: nowrap;
         }
-
-        .filter-btn.active { color: white; }
 
         .glider {
             position: absolute;
             height: calc(100% - 12px);
             top: 6px;
-            left: 6px;
             z-index: 1;
             background: var(--brand-violet);
             border-radius: 9999px;
-            box-shadow: 0 4px 15px rgba(102, 51, 119, 0.4);
-            pointer-events: none;
         }
 
-        .search-bar {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: white;
-            padding: 1rem 1.5rem 1rem 3.5rem;
-            border-radius: 9999px;
-            width: 100%;
-            transition: all 0.3s ease;
-        }
-
-        .search-bar:focus {
-            outline: none;
-            border-color: var(--brand-violet);
-            background: rgba(255,255,255,0.08);
-        }
-
+        #map { height: 100%; width: 100%; }
+        
         #brand-modal {
             display: none;
             position: fixed;
             inset: 0;
             z-index: 20000;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.95);
             align-items: center;
             justify-content: center;
-            padding: 2rem;
             backdrop-filter: blur(10px);
-            opacity: 0;
         }
-
-        #modal-content {
-            transform: scale(0.8);
-            opacity: 0;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        
-        .brand-card button {
-            color: var(--brand-violet) !important;
-            border-bottom: 2px solid rgba(102, 51, 119, 0.2);
-            font-size: 14px !important;
-            font-weight: 700;
-        }
-
-        #map { height: 100%; width: 100%; min-height: 100%; }
     </style>
 </head>
 <body>
 
-    <nav id="navbar" class="fixed w-full z-[9999] transition-all duration-500 py-6 md:py-8 px-6 md:px-12 flex justify-between items-center">
+    <!-- NAVIGATION PC -->
+    <nav id="navbar" class="fixed w-full z-[999] transition-all duration-500 py-6 md:py-8 px-6 md:px-12 flex justify-between items-center">
         <div class="flex flex-col leading-none">
             <span class="text-2xl md:text-5xl font-extrabold uppercase tracking-tighter">Optical <span class="font-script text-[--brand-green] capitalize text-3xl md:text-4xl">Concept</span></span>
         </div>
 
+        <!-- Menu Desktop (Caché sur mobile) -->
         <div class="hidden lg:flex gap-10 text-sm uppercase tracking-[0.2em] font-bold items-center">
-            <a onclick="scrollToSection('#home')" class="nav-link transition-colors">Accueil</a>
-            <a onclick="scrollToSection('#marques')" class="nav-link transition-colors">Nos Marques</a>
-            <a href="services.html" class="nav-link transition-colors">Nos Services</a>
+            <a onclick="scrollToSection('#home')" class="nav-link">Accueil</a>
+            <a onclick="scrollToSection('#marques')" class="nav-link">Nos Marques</a>
+            <a href="services.html" class="nav-link">Nos Services</a>
             
             <div class="flex items-center gap-5 px-6 border-x border-white/10">
-                <a href="[https://www.instagram.com/optical.concept/](https://www.instagram.com/optical.concept/)" target="_blank" class="social-link">
-                    <img src="[https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg](https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg)" alt="Instagram" class="social-logo-img">
+                <a href="https://www.instagram.com/optical.concept/" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" class="social-logo-img">
                 </a>
-                a href="[https://www.facebook.com/opticalconcept/](https://www.facebook.com/opticalconcept/)" target="_blank" class="social-link">
-                    <img src="[https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg](https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg)" alt="Facebook" class="social-logo-img">
+                <a href="https://www.facebook.com/opticalconcept/" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" class="social-logo-img">
                 </a>
             </div>
 
-            <a href="[https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv](https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv)" target="_blank" class="bg-[--brand-violet] px-8 py-4 rounded-full hover:scale-105 transition-all shadow-lg text-white">Prendre RDV</a>
+            <a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv" target="_blank" class="bg-[--brand-violet] px-8 py-4 rounded-full hover:scale-105 transition-all text-white">Prendre RDV</a>
         </div>
 
-        <button id="menu-open-btn" class="lg:hidden flex flex-col gap-1.5 p-2 focus:outline-none">
+        <!-- Bouton Burger (Visible sur mobile) -->
+        <button id="menu-open-btn" class="lg:hidden flex flex-col gap-1.5 p-2">
             <span class="w-8 h-0.5 bg-white"></span>
             <span class="w-8 h-0.5 bg-white"></span>
             <span class="w-8 h-0.5 bg-white"></span>
         </button>
     </nav>
 
+    <!-- MENU MOBILE OVERLAY -->
     <div id="mobile-menu-overlay">
         <button id="menu-close-btn" class="absolute top-8 right-8 p-2">
             <i data-lucide="x" class="w-10 h-10 text-white"></i>
         </button>
 
         <div class="flex flex-col items-center gap-8 text-center">
-            <a onclick="closeMobileMenu(); scrollToSection('#home')" class="text-3xl font-black uppercase italic tracking-tighter">Accueil</a>
-            <a onclick="closeMobileMenu(); scrollToSection('#marques')" class="text-3xl font-black uppercase italic tracking-tighter">Nos Marques</a>
-            <a href="services.html" class="text-3xl font-black uppercase italic tracking-tighter">Nos Services</a>
+            <a onclick="closeMobileMenu(); scrollToSection('#home')" class="text-3xl font-black uppercase italic">Accueil</a>
+            <a onclick="closeMobileMenu(); scrollToSection('#marques')" class="text-3xl font-black uppercase italic">Nos Marques</a>
+            <a href="services.html" class="text-3xl font-black uppercase italic">Nos Services</a>
             
             <div class="flex gap-8 my-4">
-                <a href="[https://www.instagram.com/optical.concept/](https://www.instagram.com/optical.concept/)" target="_blank">
-                    <img src="[https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg](https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg)" class="w-10 h-10" alt="Insta">
+                <a href="https://www.instagram.com/optical.concept/" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" class="w-10 h-10">
                 </a>
-                a href="[https://www.facebook.com/opticalconcept/](https://www.facebook.com/opticalconcept/)" target="_blank">
-                    <img src="[https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg](https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg)" class="w-10 h-10" alt="FB">
+                <a href="https://www.facebook.com/opticalconcept/" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" class="w-10 h-10">
                 </a>
             </div>
 
-            <a href="[https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv](https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv)" target="_blank" class="bg-[--brand-violet] px-10 py-5 rounded-full text-white font-black uppercase tracking-widest text-sm">Prendre RDV</a>
+            <a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv" target="_blank" class="bg-[--brand-violet] px-10 py-5 rounded-full text-white font-bold uppercase text-sm">Prendre RDV</a>
         </div>
     </div>
 
+    <!-- HERO SECTION -->
     <section id="home" class="relative h-screen flex items-center overflow-hidden">
         <div class="hero-img-container">
-            <img src="[https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=2000](https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=2000)" id="hero-bg">
+            <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=2000" id="hero-bg">
             <div class="hero-overlay"></div>
         </div>
 
         <div class="container mx-auto px-6 md:px-12 relative z-10">
             <div class="max-w-3xl">
-                <div class="flex items-center gap-4 mb-6" id="hero-tagline">
+                <div class="flex items-center gap-4 mb-6">
                     <span class="h-[2px] w-12 bg-[--brand-green]"></span>
                     <span class="text-[--brand-green] uppercase tracking-[0.3em] text-xs font-bold">Votre Regard, Notre Signature</span>
                 </div>
-                <h1 class="text-5xl md:text-8xl font-extrabold leading-none mb-8 italic" id="hero-title">
+                <h1 class="text-5xl md:text-8xl font-extrabold leading-none mb-8 italic">
                     L'ÉLÉGANCE <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-[--brand-violet] to-purple-400">À DRANCY.</span>
                 </h1>
-                <div class="flex flex-wrap gap-6 mt-12" id="hero-btns">
-                    <a onclick="scrollToSection('#marques')" class="px-8 py-4 border border-white/30 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-white hover:text-black transition-all bg-white/5 backdrop-blur-sm cursor-pointer">Nos Marques</a>
-                    <a href="tel:0148305950" class="flex items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 px-6 py-4 rounded-full group hover:border-[--brand-violet] transition-all">
-                        <i data-lucide="phone-call" class="w-4 h-4 text-[--brand-green] group-hover:scale-110 transition-transform"></i>
+                <div class="flex flex-wrap gap-6 mt-12">
+                    <a onclick="scrollToSection('#marques')" class="px-8 py-4 border border-white/30 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-white hover:text-black transition-all cursor-pointer">Nos Marques</a>
+                    <a href="tel:0148305950" class="flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-4 rounded-full group hover:border-[--brand-violet] transition-all">
+                        <i data-lucide="phone-call" class="w-4 h-4 text-[--brand-green]"></i>
                         <span class="text-xs font-bold tracking-widest">01 48 30 59 50</span>
                     </a>
                 </div>
@@ -293,398 +255,141 @@
         </div>
     </section>
 
+    <!-- SECTION MARQUES -->
     <section id="marques" class="py-24 bg-black">
         <div class="container mx-auto px-6">
             <div class="mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-8">Nos <br><span class="text-gray-600 italic font-light"><Marques</span></h2>
+                <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-8">Nos <br><span class="text-gray-600 italic font-light">Marques</span></h2>
                 
                 <div class="flex flex-col lg:flex-row gap-6 justify-between items-center">
-img src="carrera.jpg" alt="Carrera"></div>
-                    <p class="text-black font-bold text-center text-sm uppercase">Carrera                    <div class="relative w-full lg:max-w-md">
-                        <i data-lucide="search" class="absolute left</p>
-                    <button onclick="openBrand('Carrera', '...')" class="mt-4 uppercase">En savoir plus</button>
-                </div>
-                -4 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5"></i>
-                        <div class="brand-card luxe createur" data-name="cazal">
-                    <div class="brand-logo-container"><img src="caz<input type="text" id="brandSearch" onkeyup="searchBrands()" placeholder="Rechercher une marque..." class="search-bar">
+                    <div class="relative w-full lg:max-w-md">
+                        <input type="text" id="brandSearch" onkeyup="searchBrands()" placeholder="Rechercher une marque..." class="bg-white/5 border border-white/10 text-white px-6 py-4 rounded-full w-full outline-none focus:border-[--brand-violet]">
                     </div>
 
                     <div class="filter-container">
                         <div class="glider" id="glider"></div>
-                        <button onclickal.png" alt="Cazal"></div>
-                    <p class="text-black font-bold text-center text-sm uppercase">Cazal</p>
-                    <button onclick="openBrand('Cazal', '...')" class="mt-4 uppercase">En savoir plus</button>
-                </div>
-                <="filterSelection('all', event)" class="filter-btn active">Tous</button>
-                        <button onclick="filterSelection('luxe', eventdiv class="brand-card createur" data-name="dsquared2">
-                    <div class="brand-logo-container"><img src="Dsquared2)" class="filter-btn">Luxe</button>
-                        <button onclick="filterSelection('createur', event)" class="filter-btn">.png" alt="Dsquared2"></div>
-                    <p class="text-black font-bold text-center text-sm uppercase">Dsquared2</p>Créateur</button>
+                        <button onclick="filterSelection('all', event)" class="filter-btn active">Tous</button>
+                        <button onclick="filterSelection('luxe', event)" class="filter-btn">Luxe</button>
+                        <button onclick="filterSelection('createur', event)" class="filter-btn">Créateur</button>
                         <button onclick="filterSelection('sport', event)" class="filter-btn">Solaire</button>
                     </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4
-                    <button onclick="openBrand('Dsquared2', '...')" class="mt-4 uppercase">En savoir plus</button>
-                </div>
-                <div gap-6" id="brandGrid">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="brandGrid">
                 <div class="brand-card sport createur" data-name="carrera">
-                    < class="brand-card sport" data-name="fila">
-                    <div class="brand-logo-container"><img src="fila.png" alt="Filadiv class="brand-logo-container"><img src="carrera.jpg" alt="Carrera"></div>
-                    <p class="text-black"></div>
-                    <p class="text-black font-bold text-center text-sm uppercase">Fila</p>
-                    <button onclick="openBrand(' font-bold text-center text-sm uppercase">Carrera</p>
-                    <button onclick="openBrand('Carrera', '...')" classFila', '...')" class="mt-4 uppercase">En savoir plus</button>
+                    <div class="brand-logo-container"><img src="carrera.jpg" alt="Carrera"></div>
+                    <p class="text-black font-bold text-center text-sm uppercase">Carrera</p>
+                    <button onclick="openBrand('Carrera', 'Design iconique et sportif.')" class="mt-4 text-[--brand-violet] text-xs font-bold border-b border-violet-200">En savoir plus</button>
                 </div>
-                <div class="brand-card luxe" data-name="mt-4 uppercase">En savoir plus</button>
-                </div>
-                <div class="brand-card luxe createur" data-name="="givenchy">
-                    <div class="brand-logo-container"><img src="Givenchy.png" alt="Givenchy"></div>
-                    <p class="cazal">
-                    <div class="brand-logo-container"><img src="cazal.png" alt="Cazal"></div>text-black font-bold text-center text-sm uppercase">Givenchy</p>
-                    <button onclick="openBrand('Givenchy', '...')" class="
+                <div class="brand-card luxe createur" data-name="cazal">
+                    <div class="brand-logo-container"><img src="cazal.png" alt="Cazal"></div>
                     <p class="text-black font-bold text-center text-sm uppercase">Cazal</p>
-                    <button onclick="mt-4 uppercase">En savoir plus</button>
+                    <button onclick="openBrand('Cazal', 'L\'extravagance et le luxe absolu.')" class="mt-4 text-[--brand-violet] text-xs font-bold border-b border-violet-200">En savoir plus</button>
                 </div>
-                <div class="brand-card createur" data-name="guess">
-                    <divopenBrand('Cazal', '...')" class="mt-4 uppercase">En savoir plus</button>
-                </div>
-                <div class=" class="brand-logo-container"><img src="Guess.png" alt="Guess"></div>
-                    <p class="text-black font-bold text-center textbrand-card createur" data-name="dsquared2">
-                    <div class="brand-logo-container"><img src="Dsquared-sm uppercase">Guess</p>
-                    <button onclick="openBrand('Guess', '...')" class="mt-4 uppercase">En savoir plus</button>
-2.png" alt="Dsquared2"></div>
-                    <p class="text-black font-bold text-center text-sm uppercase">D                </div>
-                <div class="brand-card luxe createur" data-name="hugo boss">
-                    <div class="brand-logo-container"><imgsquared2</p>
-                    <button onclick="openBrand('Dsquared2', '...')" class="mt-4 uppercase">En savoir plus</ src="Hugo Boss.png" alt="Hugo Boss"></div>
-                    <p class="text-black font-bold text-center text-sm uppercase">Hugo Boss</button>
-                </div>
-                <div class="brand-card sport" data-name="fila">
-                    <div class="brand-logo-p>
-                    <button onclick="openBrand('Hugo Boss', '...')" class="mt-4 uppercase">En savoir plus</button>
-                </div>
-                <container"><img src="fila.png" alt="Fila"></div>
-                    <p class="text-black font-bold text-center text-div class="brand-card createur sport" data-name="ray-ban">
-                    <div class="brand-logo-container"><img src="Rayban-sm uppercase">Fila</p>
-                    <button onclick="openBrand('Fila', '...')" class="mt-4 uppercase">En savoirLogo.webp" alt="Ray-Ban"></div>
-                    <p class="text-black font-bold text-center text-sm uppercase">Ray-Ban</p plus</button>
-                </div>
-                <div class="brand-card luxe" data-name="givenchy">
-                    <div class="brand>
-                    <button onclick="openBrand('Ray-Ban', '...')" class="mt-4 uppercase">En savoir plus</button>
-                </div>
-            </div>-logo-container"><img src="Givenchy.png" alt="Givenchy"></div>
-                    <p class="text-black font-bold text
+                <!-- Ajoute ici les autres cartes sur le même modèle -->
+            </div>
         </div>
     </section>
 
+    <!-- MODAL -->
     <div id="brand-modal" onclick="closeModal()">
-        <div id="modal-content" class="-center text-sm uppercase">Givenchy</p>
-                    <button onclick="openBrand('Givenchy', '...')" class="mt-4bg-zinc-900 border border-white/10 p-10 rounded-[2rem] max-w-2xl w-full relative" onclick=" uppercase">En savoir plus</button>
-                </div>
-                <div class="brand-card createur" data-name="guess">
-                    <event.stopPropagation()">
-            <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white transition-div class="brand-logo-container"><img src="Guess.png" alt="Guess"></div>
-                    <p class="text-black font-colors"><i data-lucide="x"></i></button>
-            <h3 id="modal-title" class="text-3xl font-bold uppercase italicbold text-center text-sm uppercase">Guess</p>
-                    <button onclick="openBrand('Guess', '...')" class="mt-4 text-[--brand-violet] mb-6 border-b border-white/5 pb-4">Titre</h3>
-            <div id="modal-desc" class uppercase">En savoir plus</button>
-                </div>
-                <div class="brand-card luxe createur" data-name="hugo boss">="text-gray-400 leading-relaxed space-y-4 text-base">Description...</div>
-            <button onclick="closeModal()" class="mt-
-                    <div class="brand-logo-container"><img src="Hugo Boss.png" alt="Hugo Boss"></div>
-                    <p class="10 bg-white/5 hover:bg-white/10 text-white w-full py-4 rounded-xl font-bold uppercase tracking-widest transitiontext-black font-bold text-center text-sm uppercase">Hugo Boss</p>
-                    <button onclick="openBrand('Hugo Boss', '...')" class="mt-4 uppercase">En savoir plus</button>
-                </div>
-                <div class="brand-card createur sport" data-all border border-white/10">Fermer</button>
+        <div class="bg-zinc-900 border border-white/10 p-10 rounded-[2rem] max-w-lg w-full m-4" onclick="event.stopPropagation()">
+            <h3 id="modal-title" class="text-3xl font-bold uppercase italic text-[--brand-violet] mb-4"></h3>
+            <p id="modal-desc" class="text-gray-400 mb-8"></p>
+            <button onclick="closeModal()" class="w-full bg-white/5 py-4 rounded-xl font-bold uppercase tracking-widest border border-white/10 hover:bg-white/10 transition-all">Fermer</button>
         </div>
     </div>
 
+    <!-- CONTACT & MAP -->
     <section id="contact" class="py-24 bg-[#050505]">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 lg-name="ray-ban">
-                    <div class="brand-logo-container"><img src="Rayban-Logo.webp" alt="Ray:grid-cols-2 gap-16 items-center">
-                <div class="space-y-10">
-                    <h2 class="text--Ban"></div>
-                    <p class="text-black font-bold text-center text-sm uppercase">Ray-Ban</p>
-                    5xl md:text-6xl font-bold tracking-tighter italic leading-none">NOUS <br><span class="text-[--brand-violet]">TRO<button onclick="openBrand('Ray-Ban', '...')" class="mt-4 uppercase">En savoir plus</button>
-                </div>
-            UVER.</span></h2>
-                    <div class="space-y-8">
-                        <div class="flex gap-6 items-start group">
-                            <div</div>
-        </div>
-    </section>
-
-    <div id="brand-modal" onclick="closeModal()">
-        <div id="modal- class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border border-white/10 bg-white/5content" class="bg-zinc-900 border border-white/10 p-10 rounded-[2rem] max-w-2">
-                                <i data-lucide="map-pin" class="text-[--brand-violet] w-5 h-5"></i>
-                            </div>
-                            xl w-full relative" onclick="event.stopPropagation()">
-            <button onclick="closeModal()" class="absolute top-6 right-6 text-<div>
-                                <h4 class="font-bold text-lg uppercase tracking-tighter">Adresse Boutique</h4>
-                                <p class="text-gray-400gray-400 hover:text-white transition-colors"><i data-lucide="x"></i></button>
-            <h3 id">109 Avenue Henri Barbusse,<br>93700 Drancy, France</p>
-                            </div>
-                        </div>
-                        <div class="="modal-title" class="text-3xl font-bold uppercase italic text-[--brand-violet] mb-6 border-b border-whiteflex gap-6 items-start group">
-                            <div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border border-white/10 bg-white/5">
-                                <i data-lucide="clock" class="text-[--brand-green] w-/5 pb-4">Titre</h3>
-            <div id="modal-desc" class="text-gray-400 leading-relaxed space5 h-5"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-lg uppercase tracking-tighter">Horaires de Visite-y-4 text-base">Description...</div>
-            <button onclick="closeModal()" class="mt-10 bg-white/5 hover:bg-white/10 text-white w-full py-4 rounded-xl font-bold uppercase tracking-widest transition-all border border</h4>
-                                <p class="text-gray-400">Lundi - Samedi : 10:00 – 19:00</p-white/10">Fermer</button>
-        </div>
-    </div>
-
-    <section id="contact" class="py-24>
-                            </div>
-                        </div>
+        <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-10">
+                <h2 class="text-5xl font-bold tracking-tighter italic">NOUS <br><span class="text-[--brand-violet]">TROUVER.</span></h2>
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <i data-lucide="map-pin" class="text-[--brand-violet]"></i>
+                        <p class="text-gray-400">109 Avenue Henri Barbusse, 93700 Drancy</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <i data-lucide="clock" class="text-[--brand-green]"></i>
+                        <p class="text-gray-400">Lun - Sam : 10:00 – 19:00</p>
                     </div>
                 </div>
-                <div class="h-[400px] md:h-[550px] rounded bg-[#050505]">
-        <div class="container mx-auto px-6">
-            <div class="grid grid--[2rem] md:rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl relative">
-                    <div id="map"></div>cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="space-y-10">
-
-                </div>
+            </div>
+            <div class="h-[450px] rounded-[2rem] overflow-hidden border border-white/10">
+                <div id="map"></div>
             </div>
         </div>
     </section>
-
-    <footer class="bg-black/40 border-t border-white/5 pt                    <h2 class="text-5xl md:text-6xl font-bold tracking-tighter italic leading-none">NOUS <br-16 pb-8 text-center md:text-left">
-        <div class="container mx-auto px-6">
-            <div class="grid><span class="text-[--brand-violet]">TROUVER.</span></h2>
-                    <div class="space-y-8">
-                        <div class="flex gap-6 items-start group">
-                            <div class="w-12 h-12 rounded-2xl flex items grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-                <div>
-                    <h3 class="text-[--brand-violet] font-bold uppercase tracking-widest mb-6 text-sm">Optical Concept</h3>
-                    <ul class="space-y-3 text-gray-4-center justify-center shrink-0 border border-white/10 bg-white/5">
-                                <i data-lucide="map-pin" class="text-[--brand-violet] w-5 h-5"></i>
-                            </div>
-                            <div>
-                                <h4 class="00 text-sm">
-                        <li><a onclick="scrollToSection('#home')" class="cursor-pointer">Notre magasin</a></li>
-                        <li><a onclick="scrollToSection('#marques')" class="cursor-pointer">Nos marques</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-white font-font-bold text-lg uppercase tracking-tighter">Adresse Boutique</h4>
-                                <p class="text-gray-400">109 Avenue Henri Barbusse,<br>93700 Drancy, France</p>
-                            </div>
-                        </div>
-                        <div class="bold uppercase tracking-widest mb-6 text-sm">Nous trouver</h3>
-                    <p class="text-gray-400 text-sm mb-6">flex gap-6 items-start group">
-                            <div class="w-12 h-12 rounded-2xl flex items-center justify109 AVENUE HENRI BARBUSSE<br>93700 DRANCY</p>
-                </div>
-                <div>
-                    <h3 class="text-center shrink-0 border border-white/10 bg-white/5">
-                                <i data-lucide="clock" class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Contact</h3>
-                    <p class="text-gray-400 text-sm">-[--brand-green] w-5 h-5"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-01 48 30 59 50</p>
-                </div>
-            </div>
-            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                <p class="text-[10px] textlg uppercase tracking-tighter">Horaires de Visite</h4>
-                                <p class="text-gray-400">Lundi - Samedi-gray-600 uppercase tracking-[0.5em]">Groupe all © 2026</p>
-            </div>
-        </div>
-    </footer>
-
- : 10:00 – 19:00</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <    <script>
-        lucide.createIcons();
-
-        // --- GESTION MENU MOBILE ---
-        const burgerBtn = document.getElementById('burger-btn');div class="h-[400px] md:h-[550px] rounded-[2rem] md:rounded-[3rem] overflow
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        burgerBtn.addEventListener('click', () => {
-            const isActive = mobileMenu.classList.-hidden border border-white/10 shadow-2xl relative">
-                    <div id="map"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-black/40 border-t border-white/5 pt-16 pb-toggle('active');
-            document.body.style.overflow = isActive ? 'hidden' : '';
-        });
-
-        function closeMobileMenu() {
-            mobileMenu8 text-center md:text-left">
-        <div class="container mx-auto px-6">
-            <div class="grid grid.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        // --- TES SCRIPTS GSAP ---
-        window.addEventListener('-cols-1 md:grid-cols-3 gap-12 mb-16">
-                <div>
-                    <h3 class="text-DOMContentLoaded', () => {
-            const tl = gsap.timeline();
-            tl.to("#hero-bg", { scale: 1, duration: 2, ease[--brand-violet] font-bold uppercase tracking-widest mb-6 text-sm">Optical Concept</h3>
-                    <ul class="space-y: "power2.out" })
-              .from("#hero-tagline", { x: -30, opacity: 0, duration: 0-3 text-gray-400 text-sm">
-                        <li><a onclick="scrollToSection('#home')" class="cursor-pointer">Notre.8 }, "-=1.2")
-              .from("#hero-title", { y: 50, opacity: 0, duration: 1, skew magasin</a></li>
-                        <li><a onclick="scrollToSection('#marques')" class="cursor-pointer">Nos marques</a></li>
-                    </ul>
-                </div>Y: 5 }, "-=0.8")
-              .from("#hero-btns", { y: 20, opacity: 0, duration: 0
-                <div>
-                    <h3 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Nous trouver</h3>
-.8 }, "-=0.5");
-            
-            const activeBtn = document.querySelector('.filter-btn.active');
-            if(activeBtn) gsap.                    <p class="text-gray-400 text-sm mb-6">109 AVENUE HENRI BARBUSSE<br>9set("#glider", { x: activeBtn.offsetLeft - 6, width: activeBtn.offsetWidth });
-            animateCards();
-        });
-
-        function scrollToSection3700 DRANCY</p>
-                </div>
-                <div>
-                    <h3 class="text-white font-bold uppercase tracking-wid(id) {
-            gsap.to(window, {
-                duration: 1.2,
-                scrollTo: { y: id, offsetY: 8est mb-6 text-sm">Contact</h3>
-                    <p class="text-gray-400 text-sm">01 48 30 59 50</p>
-                </div>
-            </div>
-            <div class="pt-8 border-t border-0 },
-                ease: "power4.inOut"
-            });
-        }
-
-        const coords = [48.9242, 2.4439];
-        const map = L.map('map', { scrollWheelZoom: false }).setView(coords, 16);
-        L.tileLayer('https://{s}[.basemaps.cartocdn.com/dark_all/](https://.basemaps.cartocdn.com/dark_all/){z}/{x}/{y}{r}.png').addTo(map);white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                <p class="text-[10px] text-gray-600 uppercase tracking-[0.5em]">Groupe all © 2026</p>
-            </div>
-        L.marker(coords).addTo(map);
-        setTimeout(() => { map.invalidateSize(); }, 500);
-
-        function animateCards() {
-        </div>
-    </footer>
 
     <script>
         lucide.createIcons();
 
-        // --- GESTION MENU MOBILE (TRIGGER VERSION) ---
-        
-            const visibleCards = document.querySelectorAll('.brand-card:not(.item-hidden)');
-            gsap.set(visibleCards, { opacity: 0,const menuOpenBtn = document.getElementById('menu-open-btn');
-        const menuCloseBtn = document.getElementById('menu-close-btn'); y: 30, scale: 0.9 });
-            gsap.to(visibleCards, {
-                opacity: 1, y: 0,
-        const menuOverlay = document.getElementById('mobile-menu-overlay');
-
-        menuOpenBtn.addEventListener('click', () => {
-            menu scale: 1, duration: 0.5, stagger: 0.1, ease: "power2.out", overwrite: true
-            });
-        }Overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-
-        menuCloseBtn.addEventListener('click',
-
-        function searchBrands() {
-            let input = document.getElementById('brandSearch').value.toLowerCase();
-            document.querySelectorAll('.brand-card').forEach(card closeMobileMenu);
-
-        function closeMobileMenu() {
-            menuOverlay.classList.remove('active');
-            document.body.style.overflow => {
-                let name = card.getAttribute('data-name');
-                card.classList.toggle('item-hidden', !name.includes(input));
-             = '';
-        }
-
-        // --- SCRIPTS GSAP & AUTRES ---
-        window.addEventListener('DOMContentLoaded', () => {
-            const tl = gsap.});
-            animateCards();
-        }
-
-        function filterSelection(category, event) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.timeline();
-            tl.to("#hero-bg", { scale: 1, duration: 2, ease: "power2.out" })classList.remove('active'));
-            if(event) {
-                const clickedBtn = event.currentTarget;
-                clickedBtn.classList.add('active');
-                
-              .from("#hero-tagline", { x: -30, opacity: 0, duration: 0.8 }, "-=1.2gsap.to("#glider", { x: clickedBtn.offsetLeft - 6, width: clickedBtn.offsetWidth, duration: 0.5, ease: "")
-              .from("#hero-title", { y: 50, opacity: 0, duration: 1, skewY: 5power3.inOut" });
+        // --- NAVIGATION & SCROLL ---
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-black/90', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-white/5');
+            } else {
+                nav.classList.remove('bg-black/90', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-white/5');
             }
-            document.querySelectorAll('.brand-card').forEach(card => {
-                card.classList.add('item-hidden }, "-=0.8")
-              .from("#hero-btns", { y: 20, opacity: 0, duration: 0');
-                if (category === 'all' || card.classList.contains(category)) card.classList.remove('item-hidden');
-            });
-            animateCards.8 }, "-=0.5");
-            
-            const activeBtn = document.querySelector('.filter-btn.active');
-            if(active();
-        }
-
-        function openBrand(name, desc) {
-            const modal = document.getElementById('brand-modal');
-            document.getElementById('modal-Btn) gsap.set("#glider", { x: activeBtn.offsetLeft - 6, width: activeBtn.offsetWidth });
-            animateCards();title').innerText = name;
-            document.getElementById('modal-desc').innerHTML = desc;
-            modal.style.display = 'flex';
-            gsap.
         });
 
         function scrollToSection(id) {
-            gsap.to(window, {
-                duration: 1.2,
-to(modal, { opacity: 1, duration: 0.3 });
-            gsap.to("#modal-content", { opacity: 1, scale:                scrollTo: { y: id, offsetY: 80 },
-                ease: "power4.inOut"
+            gsap.to(window, { duration: 1.2, scrollTo: { y: id, offsetY: 80 }, ease: "power4.inOut" });
+        }
+
+        // --- MENU MOBILE ---
+        const menuOverlay = document.getElementById('mobile-menu-overlay');
+        document.getElementById('menu-open-btn').addEventListener('click', () => {
+            menuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        document.getElementById('menu-close-btn').addEventListener('click', closeMobileMenu);
+        function closeMobileMenu() {
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // --- CARTES & FILTRES ---
+        function animateCards() {
+            const cards = document.querySelectorAll('.brand-card:not(.item-hidden)');
+            gsap.fromTo(cards, {opacity: 0, y: 20}, {opacity: 1, y: 0, stagger: 0.1, duration: 0.4});
+        }
+
+        function filterSelection(cat, e) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            e.currentTarget.classList.add('active');
+            
+            const glider = document.getElementById('glider');
+            gsap.to(glider, { x: e.currentTarget.offsetLeft - 6, width: e.currentTarget.offsetWidth, duration: 0.3 });
+
+            document.querySelectorAll('.brand-card').forEach(card => {
+                card.classList.toggle('item-hidden', cat !== 'all' && !card.classList.contains(cat));
+            });
+            animateCards();
+        }
+
+        function searchBrands() {
+            const q = document.getElementById('brandSearch').value.toLowerCase();
+            document.querySelectorAll('.brand-card').forEach(card => {
+                card.classList.toggle('item-hidden', !card.dataset.name.includes(q));
             });
         }
 
- 1, duration: 0.5, ease: "back.out(1.2)" });
+        // --- MODAL & MAP ---
+        function openBrand(t, d) {
+            document.getElementById('modal-title').innerText = t;
+            document.getElementById('modal-desc').innerText = d;
+            document.getElementById('brand-modal').style.display = 'flex';
         }
+        function closeModal() { document.getElementById('brand-modal').style.display = 'none'; }
 
-        function closeModal() {
-            const modal =        const coords = [48.9242, 2.4439];
-        const map = L.map('map', document.getElementById('brand-modal');
-            gsap.to("#modal-content", { opacity: 0, scale: 0.8, duration: 0 { scrollWheelZoom: false }).setView(coords, 16);
-        L.tileLayer('https://{s}.basemaps.cart.3 });
-            gsap.to(modal, { opacity: 0, duration: 0.3, onComplete: () => { [modal.style.displayocdn.com/dark_all/](https://modal.style.displayocdn.com/dark_all/){z}/{x}/{y}{r}.png').addTo(map);
-        L.marker(coords).addTo( = 'none'; }});
-        }
-
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (windowmap);
-        setTimeout(() => { map.invalidateSize(); }, 500);
-
-        function animateCards() {
-            const visibleCards =.scrollY > 50) {
-                nav.classList.add('bg-black/90', 'backdrop-blur-xl', 'py-4', ' document.querySelectorAll('.brand-card:not(.item-hidden)');
-            gsap.set(visibleCards, { opacity: 0, y:border-b', 'border-white/5');
-            } else {
-                nav.classList.remove('bg-black/90', 'backdrop-blur- 30, scale: 0.9 });
-            gsap.to(visibleCards, {
-                opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.1, ease: "power2.out", overwrite: truexl', 'py-4', 'border-b', 'border-white/5');
-            }
-        });
+        const coords = [48.9242, 2.4439];
+        const map = L.map('map', { scrollWheelZoom: false }).setView(coords, 16);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png').addTo(map);
+        L.marker(coords).addTo(map);
     </script>
 </body>
 </html>
