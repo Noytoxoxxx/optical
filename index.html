@@ -214,15 +214,15 @@
 </head>
 <body>
 
-    <nav id="navbar" class="fixed w-full z-[999] transition-all duration-500 py-6 md:py-8 px-6 md:px-12 flex justify-between items-center">
+    <nav id="navbar" class="fixed w-full z-[9999] transition-all duration-500 py-6 md:py-8 px-6 md:px-12 flex justify-between items-center bg-transparent">
         <div class="flex flex-col leading-none">
             <span class="text-2xl md:text-5xl font-extrabold uppercase tracking-tighter">Optical <span class="font-script text-[--brand-green] capitalize text-3xl md:text-4xl">Concept</span></span>
         </div>
 
         <div class="hidden lg:flex gap-10 text-sm uppercase tracking-[0.2em] font-bold items-center">
-            <a onclick="scrollToSection('#home')" class="nav-link transition-colors">Accueil</a>
-            <a onclick="scrollToSection('#marques')" class="nav-link transition-colors">Nos Marques</a>
-            <a href="services.html" class="nav-link transition-colors">Nos Services</a>
+            <a href="index.html" class="nav-link transition-colors text-white">Accueil</a>
+            <a href="index.html#marques" class="nav-link transition-colors text-white">Nos Marques</a>
+            <a href="services.html" class="nav-link transition-colors text-white">Nos Services</a>
             
             <div class="flex items-center gap-5 px-6 border-x border-white/10">
                 <a href="https://www.instagram.com/optical.concept/" target="_blank" class="social-link">
@@ -236,46 +236,35 @@
             <a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv" target="_blank" class="bg-[--brand-violet] px-8 py-4 rounded-full hover:scale-105 transition-all shadow-lg text-white">Prendre RDV</a>
         </div>
 
-        <button id="burger-btn" class="lg:hidden z-[11000] text-white">
-            <i data-lucide="menu" id="burger-icon" class="w-8 h-8"></i>
+        <button id="menu-open-btn" class="lg:hidden flex flex-col gap-1.5 p-2 focus:outline-none">
+            <span class="w-8 h-0.5 bg-white"></span>
+            <span class="w-8 h-0.5 bg-white"></span>
+            <span class="w-8 h-0.5 bg-white"></span>
         </button>
     </nav>
 
-    <div id="mobile-menu">
-        <a onclick="closeMobileMenu(); scrollToSection('#home')" class="text-2xl font-bold uppercase tracking-widest">Accueil</a>
-        <a onclick="closeMobileMenu(); scrollToSection('#marques')" class="text-2xl font-bold uppercase tracking-widest">Nos Marques</a>
-        <a href="services.html" class="text-2xl font-bold uppercase tracking-widest">Nos Services</a>
-        <div class="flex gap-8 my-4">
-            <a href="https://www.instagram.com/optical.concept/" target="_blank"><i data-lucide="instagram" class="w-8 h-8"></i></a>
-            <a href="https://www.facebook.com/opticalconcept/" target="_blank"><i data-lucide="facebook" class="w-8 h-8"></i></a>
-        </div>
-        <a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv" target="_blank" class="bg-[--brand-violet] px-10 py-4 rounded-full font-bold uppercase text-sm">Prendre RDV</a>
-    </div>
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black z-[10000] flex flex-col items-center justify-center lg:hidden">
+        <button id="menu-close-btn" class="absolute top-8 right-8 p-2">
+            <i data-lucide="x" class="w-10 h-10 text-white"></i>
+        </button>
 
-    <section id="home" class="relative h-screen flex items-center overflow-hidden">
-        <div class="hero-img-container">
-            <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=2000" id="hero-bg">
-            <div class="hero-overlay"></div>
-        </div>
-
-        <div class="container mx-auto px-6 md:px-12 relative z-10">
-            <div class="max-w-3xl">
-                <div class="flex items-center gap-4 mb-6" id="hero-tagline">
-                    <span class="h-[2px] w-12 bg-[--brand-green]"></span>
-                    <span class="text-[--brand-green] uppercase tracking-[0.3em] text-xs font-bold">Votre Regard, Notre Signature</span>
-                </div>
-                <h1 class="text-5xl md:text-8xl font-extrabold leading-none mb-8 italic" id="hero-title">
-                    L'ÉLÉGANCE <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-[--brand-violet] to-purple-400">À DRANCY.</span>
-                </h1>
-                <div class="flex flex-wrap gap-6 mt-12" id="hero-btns">
-                    <a onclick="scrollToSection('#marques')" class="px-8 py-4 border border-white/30 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-white hover:text-black transition-all bg-white/5 backdrop-blur-sm cursor-pointer">Nos Marques</a>
-                    <a href="tel:0148305950" class="flex items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 px-6 py-4 rounded-full group hover:border-[--brand-violet] transition-all">
-                        <i data-lucide="phone-call" class="w-4 h-4 text-[--brand-green] group-hover:scale-110 transition-transform"></i>
-                        <span class="text-xs font-bold tracking-widest">01 48 30 59 50</span>
-                    </a>
-                </div>
+        <div class="flex flex-col items-center gap-8 text-center">
+            <a href="index.html" class="text-3xl font-black uppercase italic tracking-tighter">Accueil</a>
+            <a href="index.html#marques" class="text-3xl font-black uppercase italic tracking-tighter">Nos Marques</a>
+            <a href="services.html" class="text-3xl font-black uppercase italic tracking-tighter text-[--brand-violet]">Nos Services</a>
+            
+            <div class="flex gap-8 my-4">
+                <a href="https://www.instagram.com/optical.concept/" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" class="w-10 h-10" alt="Insta">
+                </a>
+                <a href="https://www.facebook.com/opticalconcept/" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" class="w-10 h-10" alt="FB">
+                </a>
             </div>
+
+            <a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv" target="_blank" class="bg-[--brand-violet] px-10 py-5 rounded-full text-white font-black uppercase tracking-widest text-sm">Prendre RDV</a>
         </div>
+    </div>
     </section>
 
     <section id="marques" class="py-24 bg-black">
