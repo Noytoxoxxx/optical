@@ -84,7 +84,7 @@
         .social-link:hover .social-logo-img { transform: scale(1.1); }
 
         .brand-card {
-            background: white;
+            background: white; /* Retour au blanc pur */
             border-radius: 1.5rem;
             padding: 2rem;
             display: flex;
@@ -92,13 +92,17 @@
             align-items: center;
             justify-content: center;
             min-height: 250px;
-            border: 1px solid rgba(255,255,255,0.05);
-            will-change: transform, opacity;
+            border: 1px solid #e5e7eb;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Animation très fluide */
+            cursor: pointer;
         }
 
         .brand-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(102, 51, 119, 0.2);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(102, 51, 119, 0.15); /* Ombre douce violette */
+            border-color: var(--brand-violet);
         }
 
         .brand-logo-container {
@@ -108,6 +112,11 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 1.5rem;
+            transition: transform 0.4s ease;
+        }
+
+        .brand-card:hover .brand-logo-container {
+            transform: scale(1.1); /* Zoom discret sur le logo au survol */
         }
 
         .brand-logo-container img {
@@ -199,6 +208,25 @@
             opacity: 0;
             max-height: 90vh;
             overflow-y: auto;
+        }
+
+        .custom-marker {
+            background-color: var(--brand-violet);
+            border: 2px solid white;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            width: 30px !important;
+            height: 30px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(102, 51, 119, 0.4);
+        }
+        
+        .custom-marker i {
+            transform: rotate(45deg);
+            color: white;
+            font-size: 14px;
         }
         
         .brand-card button {
@@ -557,6 +585,42 @@
     <script>
         lucide.createIcons();
 
+        function initMap() {
+            // Coordonnées approximatives du 109 Avenue Henri Barbusse, Drancy
+            const drancyCoords = [48.9221, 2.4418];
+            
+            // Initialisation de la carte
+            const map = L.map('map', {
+                scrollWheelZoom: false, // Évite de zoomer par erreur en scrollant la page
+                zoomControl: true
+            }).setView(drancyCoords, 16);
+
+            // Ajout du style de carte (Mode Sombre / Elégant via CartoDB)
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+            }).addTo(map);
+
+            // Création d'un marqueur personnalisé
+            const icon = L.divIcon({
+                className: 'custom-div-icon',
+                html: `<div class='custom-marker'><i class="lucide-eye"></i></div>`,
+                iconSize: [30, 30],
+                iconAnchor: [15, 30]
+            });
+
+            // Ajout du marqueur sur la carte
+            const marker = L.marker(drancyCoords, { icon: icon }).addTo(map);
+            
+            // Ajout d'une bulle d'info (Popup)
+            marker.bindPopup(`
+                <div style="color: black; padding: 5px;">
+                    <b style="color: #663377;">Optical Concept</b><br>
+                    109 Avenue Henri Barbusse<br>
+                    93700 Drancy
+                </div>
+            `);
+        }
+
         let isMenuOpen = false;
 
         function toggleMobileMenu() {
@@ -594,6 +658,8 @@
             // Initialiser le premier placement du glider de filtre
             const firstBtn = document.querySelector('.filter-btn.active');
             if (firstBtn) updateGlider(firstBtn);
+
+            initMap();
         });
 
         function openBrand(title, description) {
