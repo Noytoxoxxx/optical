@@ -204,42 +204,20 @@
         }
 
         #map { height: 100%; width: 100%; min-height: 100%; }
-
-        #mobile-menu {
-            position: fixed;
-            inset: 0;
-            background: black;
-            z-index: 10001;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-        }
-
-        .mobile-nav-link {
-            font-size: 1.5rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 2rem;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .mobile-nav-link:hover {
-            color: var(--brand-violet);
-        }
     </style>
 </head>
 <body>
 
-    <nav id="navbar" class="fixed w-full z-[9999] transition-all duration-500 py-6 md:py-8 px-6 md:px-12 flex justify-between items-center">
+    <nav id="navbar" class="fixed w-full z-[9999] transition-all duration-500 py-6 md:py-8 px-4 md:px-12 flex justify-between items-center">
         <div class="flex flex-col leading-none">
             <span class="text-2xl md:text-5xl font-extrabold uppercase tracking-tighter">Optical <span class="font-script text-[--brand-green] capitalize text-3xl md:text-4xl">Concept</span></span>
         </div>
 
-        <!-- Desktop Menu -->
+        <!-- Bouton Menu Mobile (Apparaît sur mobile uniquement) -->
+        <button id="mobile-menu-btn" class="lg:hidden text-white focus:outline-none p-2">
+            <i data-lucide="menu" class="w-8 h-8"></i>
+        </button>
+
         <div class="hidden lg:flex gap-10 text-sm uppercase tracking-[0.2em] font-bold items-center">
             <a onclick="scrollToSection('#home')" class="nav-link transition-colors">Accueil</a>
             <a onclick="scrollToSection('#marques')" class="nav-link transition-colors">Nos Marques</a>
@@ -256,24 +234,21 @@
 
             <a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv" target="_blank" class="bg-[--brand-violet] px-8 py-4 rounded-full hover:scale-105 transition-all shadow-lg text-white">Prendre RDV</a>
         </div>
-
-        <!-- Mobile Hamburger Button -->
-        <button onclick="toggleMobileMenu(true)" class="lg:hidden text-white p-2">
-            <i data-lucide="menu" class="w-8 h-8"></i>
-        </button>
     </nav>
 
-    <div id="mobile-menu">
-        <button onclick="toggleMobileMenu(false)" class="absolute top-8 right-8 text-white">
+    <!-- Overlay Menu Mobile (Style image_484e17.jpg) -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black z-[10000] flex flex-col items-center justify-center hidden opacity-0">
+        <button id="close-menu-btn" class="absolute top-8 right-8 text-white focus:outline-none">
             <i data-lucide="x" class="w-10 h-10"></i>
         </button>
-        
-        <div class="flex flex-col items-center">
-            <a onclick="mobileScrollTo('#home')" class="mobile-nav-link">Accueil</a>
-            <a onclick="mobileScrollTo('#marques')" class="mobile-nav-link">Nos Marques</a>
-            <a href="services.html" class="mobile-nav-link text-[--brand-violet]">Nos Services</a>
+
+        <div class="flex flex-col items-center gap-12 text-center">
+            <a onclick="closeMobileMenu('#home')" class="mobile-nav-link text-3xl font-black uppercase tracking-widest text-white">Accueil</a>
+            <a onclick="closeMobileMenu('#marques')" class="mobile-nav-link text-3xl font-black uppercase tracking-widest text-white">Nos Marques</a>
+            <a href="services.html" class="mobile-nav-link text-3xl font-black uppercase tracking-widest text-white">Nos Services</a>
             
-            <a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv" target="_blank" class="mt-8 bg-[--brand-violet] px-12 py-5 rounded-full font-bold uppercase tracking-widest text-white shadow-2xl">
+            <a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv" target="_blank" 
+               class="mobile-nav-link mt-4 bg-[--brand-violet] px-10 py-5 rounded-full text-lg font-black uppercase tracking-widest text-white shadow-2xl">
                 Prendre RDV
             </a>
         </div>
@@ -463,64 +438,44 @@
     <script>
         lucide.createIcons();
 
-        function toggleMobileMenu(open) {
-            const menu = document.getElementById('mobile-menu');
-            if (open) {
-                menu.style.display = 'flex';
-                gsap.to(menu, { opacity: 1, duration: 0.4, ease: "power2.out" });
-                gsap.from(".mobile-nav-link", { y: 20, opacity: 0, stagger: 0.1, duration: 0.5, delay: 0.2 });
-                document.body.style.overflow = 'hidden'; // Empêche le scroll derrière
-            } else {
-                gsap.to(menu, { opacity: 0, duration: 0.3, onComplete: () => {
-                    menu.style.display = 'none';
-                    document.body.style.overflow = '';
-                }});
-            }
-        }
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 
-        function mobileScrollTo(id) {
-            toggleMobileMenu(false);
-            scrollToSection(id);
-        }
-
-        // 1. ANIMATION D'ENTRÉE HERO (Amélioration Visuelle)
-        window.addEventListener('DOMContentLoaded', () => {
-            const tl = gsap.timeline();
-            tl.to("#hero-bg", { scale: 1, duration: 2, ease: "power2.out" })
-              .from("#hero-tagline", { x: -30, opacity: 0, duration: 0.8 }, "-=1.2")
-              .from("#hero-title", { y: 50, opacity: 0, duration: 1, skewY: 5 }, "-=0.8")
-              .from("#hero-btns", { y: 20, opacity: 0, duration: 0.8 }, "-=0.5");
-            
-            // Glider initial
-            const activeBtn = document.querySelector('.filter-btn.active');
-            if(activeBtn) gsap.set("#glider", { x: activeBtn.offsetLeft - 6, width: activeBtn.offsetWidth });
-            animateCards();
-        });
-
-        // 2. FONCTION SCROLL ANIMÉ (Amélioration Navigation)
-        function scrollToSection(id) {
-            gsap.to(window, {
-                duration: 1.2,
-                scrollTo: { y: id, offsetY: 80 },
-                ease: "power4.inOut"
+        function openMobileMenu() {
+            mobileMenuOverlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Bloque le scroll
+            gsap.to(mobileMenuOverlay, { opacity: 1, duration: 0.4, ease: "power2.out" });
+            gsap.from(mobileLinks, { 
+                y: 50, 
+                opacity: 0, 
+                duration: 0.6, 
+                stagger: 0.1, 
+                ease: "back.out(1.7)",
+                delay: 0.2 
             });
         }
 
-        const coords = [48.9242, 2.4439];
-        const map = L.map('map', { scrollWheelZoom: false }).setView(coords, 16);
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png').addTo(map);
-        L.marker(coords).addTo(map);
-        setTimeout(() => { map.invalidateSize(); }, 500);
-
-        function animateCards() {
-            const visibleCards = document.querySelectorAll('.brand-card:not(.item-hidden)');
-            gsap.set(visibleCards, { opacity: 0, y: 30, scale: 0.9 });
-            gsap.to(visibleCards, {
-                opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.1, ease: "power2.out", overwrite: true
+        function closeMobileMenu(targetId) {
+            gsap.to(mobileMenuOverlay, { 
+                opacity: 0, 
+                duration: 0.3, 
+                ease: "power2.in",
+                onComplete: () => {
+                    mobileMenuOverlay.classList.add('hidden');
+                    document.body.style.overflow = ''; // Libère le scroll
+                    if(targetId && targetId.startsWith('#')) {
+                        scrollToSection(targetId);
+                    }
+                }
             });
         }
 
-        function searchBrands() {
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        closeMenuBtn.addEventListener('click', () => closeMobileMenu());
+
+        // 1. ANIMATION D'ENTRÉE HERO
             let input = document.getElementById('brandSearch').value.toLowerCase();
             document.querySelectorAll('.brand-card').forEach(card => {
                 let name = card.getAttribute('data-name');
