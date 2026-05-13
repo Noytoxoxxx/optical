@@ -2,7 +2,7 @@
 <html lang="fr" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Nos Services | Optical Concept Drancy</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -10,7 +10,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Dancing+Script:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Dancing+Script:wght@700&display=swap');
 
         :root {
             --brand-violet: #663377; 
@@ -18,12 +18,10 @@
             --dark-bg: #0a0a0a;
         }
 
-        /* --- SUPPRESSION DE LA SCROLLBAR --- */
+        /* */
         html::-webkit-scrollbar,
         body::-webkit-scrollbar {
             display: none !important;
-            width: 0 !important;
-            height: 0 !important;
         }
 
         html, body {
@@ -33,7 +31,10 @@
             background-color: var(--dark-bg);
             color: white;
             scroll-behavior: smooth;
+            /* Empêche le scroll horizontal indésirable */
             overflow-x: hidden;
+            width: 100%;
+            position: relative;
         }
 
         .font-script { font-family: 'Dancing Script', cursive; }
@@ -49,6 +50,7 @@
         }
         .nav-link:hover::after { width: 100%; }
 
+        /* */
         .service-card {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -68,29 +70,43 @@
             object-fit: contain;
             transition: transform 0.3s ease;
         }
-        .social-link:hover .social-logo-img {
-            transform: scale(1.1);
+
+        /* */
+        #mobile-menu {
+            display: none;
+            opacity: 0;
+            background-color: #000;
         }
 
-        /* Menu mobile overlay */
-        #mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        .mobile-link {
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
         }
-        #mobile-menu.active { transform: translateX(0); }
+
+        .btn-rdv-mobile {
+            background-color: var(--brand-violet);
+            border-radius: 9999px;
+            padding: 1.2rem 3rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 15px rgba(102, 51, 119, 0.4);
+        }
     </style>
 </head>
-<body>
+<body class="overflow-x-hidden">
 
-    <nav id="navbar" class="fixed w-full z-[9999] transition-all duration-500 py-6 md:py-8 px-6 md:px-12 flex justify-between items-center bg-transparent">
+    <!-- -->
+    <nav id="navbar" class="fixed w-full z-[999] transition-all duration-500 py-6 md:py-8 px-6 md:px-12 flex justify-between items-center bg-transparent">
         <div class="flex flex-col leading-none">
             <span class="text-2xl md:text-5xl font-extrabold uppercase tracking-tighter">Optical <span class="font-script text-[--brand-green] capitalize text-3xl md:text-4xl">Concept</span></span>
         </div>
 
+        <!-- Desktop Links -->
         <div class="hidden lg:flex gap-10 text-sm uppercase tracking-[0.2em] font-bold items-center">
-            <a href="#home" class="nav-link transition-colors">Accueil</a>
+            <a href="index.html" class="nav-link transition-colors">Accueil</a>
             <a href="index.html#marques" class="nav-link transition-colors">Nos Marques</a>
-            <a href="services.html" class="nav-link transition-colors">Nos Services</a>
+            <a href="services.html" class="nav-link transition-colors text-[--brand-violet]">Nos Services</a>
             
             <div class="flex items-center gap-5 px-6 border-x border-white/10">
                 <a href="https://www.instagram.com/optical.concept/" target="_blank" class="social-link">
@@ -104,32 +120,42 @@
             <a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv" target="_blank" class="bg-[--brand-violet] px-8 py-4 rounded-full hover:scale-105 transition-all shadow-lg text-white">Prendre RDV</a>
         </div>
 
-        <button id="menu-toggle" class="lg:hidden p-2 text-white">
+        <!-- Hamburger Button (Mobile) -->
+        <button id="menu-toggle" class="lg:hidden p-2 text-white focus:outline-none">
             <i data-lucide="menu" class="w-8 h-8"></i>
         </button>
     </nav>
 
-    <div id="mobile-menu" class="fixed inset-0 z-[10000] bg-black flex flex-col items-center justify-center gap-8 lg:hidden">
-        <button id="menu-close" class="absolute top-8 right-8 p-2">
-            <i data-lucide="x" class="w-10 h-10 text-white"></i>
+    <!-- -->
+    <div id="mobile-menu" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center p-6 lg:hidden">
+        <button id="menu-close" class="absolute top-8 right-8 p-2 text-white hover:rotate-90 transition-transform duration-300">
+            <i data-lucide="x" class="w-10 h-10"></i>
         </button>
-        <a href="#home" class="text-2xl font-bold uppercase tracking-widest menu-link">Accueil</a>
-        <a href="index.html#marques" class="text-2xl font-bold uppercase tracking-widest menu-link">Nos Marques</a>
-        <a href="services.html" class="text-2xl font-bold uppercase tracking-widest menu-link text-[--brand-violet]">Nos Services</a>
-        <a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv" target="_blank" class="bg-[--brand-violet] px-8 py-4 rounded-full text-white font-bold uppercase">Prendre RDV</a>
+        
+        <div class="flex flex-col items-center gap-10 text-center">
+            <a href="index.html" class="text-3xl mobile-link uppercase text-white">Accueil</a>
+            <a href="index.html#marques" class="text-3xl mobile-link uppercase text-white">Nos Marques</a>
+            <a href="services.html" class="text-3xl mobile-link uppercase text-[--brand-violet]">Nos Services</a>
+            
+            <a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv" target="_blank" class="btn-rdv-mobile text-white uppercase text-lg mt-4">
+                Prendre RDV
+            </a>
+        </div>
     </div>
 
-    <section class="pt-32 md:pt-48 pb-20 container mx-auto px-6">
+    <!-- -->
+    <section class="pt-32 md:pt-48 pb-20 container mx-auto px-6 relative z-10">
         <div class="text-center mb-16 md:mb-24 hero-animate">
-            <h1 class="text-4xl md:text-8xl font-black italic tracking-tighter mb-4 uppercase leading-tight">
-                Expertise & <span class="text-transparent bg-clip-text bg-gradient-to-r from-[--brand-violet] to-purple-400">Services.</span>
+            <h1 class="text-4xl md:text-8xl font-black italic tracking-tighter mb-4 uppercase leading-none overflow-hidden">
+                <span class="block">Expertise &</span>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-[--brand-violet] to-purple-400">Services.</span>
             </h1>
             <div class="h-1 w-24 bg-[--brand-green] mx-auto mb-6"></div>
             <p class="text-gray-400 uppercase tracking-[0.2em] md:tracking-[0.4em] text-[10px] md:text-xs font-bold">L'excellence au service de votre vision à Drancy</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
-            
+            <!-- Offres Section -->
             <div class="space-y-8">
                 <h2 class="text-xl md:text-2xl font-bold flex items-center gap-4 border-b border-[--brand-green] pb-4 mb-8 uppercase italic">
                     <i data-lucide="sparkles" class="text-[--brand-green]"></i> Offres & Facilités
@@ -145,6 +171,7 @@
                         <h4 class="font-bold text-white mb-2 uppercase text-sm">Budget Maîtrisé</h4>
                         <p class="text-xs text-gray-400">Reste à charge 0 & Remboursement 100%.</p>
                     </div>
+                    <!-- ... -->
                     <div class="service-card p-8 rounded-[1.5rem] md:rounded-[2rem]">
                         <i data-lucide="credit-card" class="w-6 h-6 text-[--brand-violet] mb-4"></i>
                         <h4 class="font-bold text-white mb-2 uppercase text-sm">Paiements</h4>
@@ -158,6 +185,7 @@
                 </div>
             </div>
 
+            <!-- Garanties Section -->
             <div class="space-y-8">
                 <h2 class="text-xl md:text-2xl font-bold flex items-center gap-4 border-b border-[--brand-violet] pb-4 mb-8 uppercase italic">
                     <i data-lucide="shield-check" class="text-[--brand-violet]"></i> Garanties & Suivi
@@ -185,33 +213,11 @@
                     </div>
                 </div>
             </div>
-
-            <div class="md:col-span-2 space-y-8">
-                <h2 class="text-xl md:text-2xl font-bold flex items-center gap-4 border-b border-white/20 pb-4 mb-8 uppercase italic">
-                    <i data-lucide="truck" class="text-white"></i> Proximité & Mobilité
-                </h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div class="service-card p-8 rounded-[1.5rem] md:rounded-[2rem]">
-                        <i data-lucide="home" class="w-6 h-6 text-white mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm italic">Domicile & EHPAD</h4>
-                        <p class="text-xs text-gray-400">Déplacement et livraison à domicile ou au travail.</p>
-                    </div>
-                    <div class="service-card p-8 rounded-[1.5rem] md:rounded-[2rem]">
-                        <i data-lucide="accessibility" class="w-6 h-6 text-white mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm italic">Accessibilité PMR</h4>
-                        <p class="text-xs text-gray-400">Magasin et livraison totalement adaptés PMR.</p>
-                    </div>
-                    <div class="service-card p-8 rounded-[1.5rem] md:rounded-[2rem]">
-                        <i data-lucide="award" class="w-6 h-6 text-white mb-4"></i>
-                        <h4 class="font-bold text-white mb-2 uppercase text-sm italic">Expertise</h4>
-                        <p class="text-xs text-gray-400">Conseils personnalisés d'opticiens diplômés.</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <footer class="bg-black/40 border-t border-white/5 pt-16 pb-8">
+    <!-- -->
+    <footer class="bg-black/40 border-t border-white/5 pt-16 pb-8 relative z-10">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
                 <div>
@@ -219,7 +225,6 @@
                     <ul class="space-y-3">
                         <li><a href="index.html" class="footer-link text-gray-400 hover:text-white transition-colors text-sm">Notre magasin</a></li>
                         <li><a href="index.html#collections" class="footer-link text-gray-400 hover:text-white transition-colors text-sm">Nos marques</a></li>
-                        <li><a href="#" class="footer-link text-gray-400 hover:text-white transition-colors text-sm">Actualités</a></li>
                         <li><a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept" target="_blank" class="footer-link text-gray-300 font-semibold border-b border-white/10 pb-1 inline-block text-sm">Opticiens Par Conviction</a></li>
                     </ul>
                 </div>
@@ -247,51 +252,78 @@
                             01 48 30 59 50
                         </li>
                     </ul>
-                    <a href="mailto:optical.concept@gmail.com" class="inline-block bg-[--brand-violet]/20 border border-[--brand-violet]/30 hover:bg-[--brand-violet] text-white px-6 py-3 rounded-full text-xs font-bold transition-all uppercase tracking-tighter">
-                        Nous contacter
-                    </a>
                 </div>
             </div>
 
             <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
                 <div class="flex gap-8">
-                    <a href="mention_legales.html" class="text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Mentions légales</a>
-                    <a href="cgu.html" class="text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors">CGU</a>
-                    <a href="confid.html" class="text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Confidentialité</a>
+                    <a href="#" class="text-[10px] uppercase tracking-widest text-gray-500 hover:text-white">Mentions légales</a>
+                    <a href="#" class="text-[10px] uppercase tracking-widest text-gray-500 hover:text-white">CGU</a>
                 </div>
                 <p class="text-[10px] text-gray-600 uppercase tracking-[0.5em] text-center md:text-right">Groupe all © - Tous droits réservés - 2026</p>
             </div>
         </div>
     </footer>
 
+    <!-- -->
     <script>
         lucide.createIcons();
 
-        // NAVBAR SCROLL
+        // NAVBAR SCROLL EFFECT
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) {
                 nav.classList.add('bg-black/90', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-white/5');
-                nav.classList.remove('py-6', 'md:py-8');
             } else {
                 nav.classList.remove('bg-black/90', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-white/5');
-                nav.classList.add('py-6', 'md:py-8');
             }
         });
 
-        // MENU MOBILE TOGGLE
+        // FULL SCREEN MOBILE MENU LOGIC
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
-        const menuLinks = document.querySelectorAll('.menu-link');
 
-        menuToggle.addEventListener('click', () => mobileMenu.classList.add('active'));
-        menuClose.addEventListener('click', () => mobileMenu.classList.remove('active'));
-        menuLinks.forEach(link => {
-            link.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        // Initial GSAP setup for menu
+        gsap.set(mobileMenu, { display: 'none', opacity: 0 });
+
+        menuToggle.addEventListener('click', () => {
+            document.body.style.overflow = 'hidden'; // Bloquer le scroll
+            mobileMenu.style.display = 'flex';
+            gsap.to(mobileMenu, {
+                opacity: 1,
+                duration: 0.5,
+                ease: "power2.out"
+            });
+            gsap.from(".mobile-link, .btn-rdv-mobile", {
+                y: 30,
+                opacity: 0,
+                stagger: 0.1,
+                duration: 0.4,
+                delay: 0.2
+            });
         });
 
-        // ANIMATION GSAP ENTRÉE
+        const closeMenu = () => {
+            document.body.style.overflow = ''; // Réactiver le scroll
+            gsap.to(mobileMenu, {
+                opacity: 0,
+                duration: 0.4,
+                ease: "power2.in",
+                onComplete: () => {
+                    mobileMenu.style.display = 'none';
+                }
+            });
+        };
+
+        menuClose.addEventListener('click', closeMenu);
+        
+        // Fermer si on clique sur un lien
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // INITIAL PAGE ANIMATIONS
         window.addEventListener('load', () => {
             const tl = gsap.timeline();
             tl.fromTo(".hero-animate > *", 
