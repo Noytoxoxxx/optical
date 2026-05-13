@@ -68,15 +68,16 @@
             object-fit: contain;
             transition: transform 0.3s ease;
         }
-        
-        /* Styles Menu Mobile */
-        #mobile-menu-overlay {
-            clip-path: circle(0% at 100% 0%);
-            transition: clip-path 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        .social-link:hover .social-logo-img {
+            transform: scale(1.1);
         }
-        #mobile-menu-overlay.active {
-            clip-path: circle(150% at 100% 0%);
+
+        /* Menu mobile overlay */
+        #mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        #mobile-menu.active { transform: translateX(0); }
     </style>
 </head>
 <body>
@@ -87,9 +88,9 @@
         </div>
 
         <div class="hidden lg:flex gap-10 text-sm uppercase tracking-[0.2em] font-bold items-center">
-            <a href="index.html" class="nav-link transition-colors text-white">Accueil</a>
-            <a href="index.html#marques" class="nav-link transition-colors text-white">Nos Marques</a>
-            <a href="services.html" class="nav-link transition-colors text-white">Nos Services</a>
+            <a href="#home" class="nav-link transition-colors">Accueil</a>
+            <a href="index.html#marques" class="nav-link transition-colors">Nos Marques</a>
+            <a href="services.html" class="nav-link transition-colors">Nos Services</a>
             
             <div class="flex items-center gap-5 px-6 border-x border-white/10">
                 <a href="https://www.instagram.com/optical.concept/" target="_blank" class="social-link">
@@ -103,34 +104,19 @@
             <a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv" target="_blank" class="bg-[--brand-violet] px-8 py-4 rounded-full hover:scale-105 transition-all shadow-lg text-white">Prendre RDV</a>
         </div>
 
-        <button id="menu-open-btn" class="lg:hidden flex flex-col gap-1.5 p-2 focus:outline-none">
-            <span class="w-8 h-0.5 bg-white"></span>
-            <span class="w-8 h-0.5 bg-white"></span>
-            <span class="w-8 h-0.5 bg-white"></span>
+        <button id="menu-toggle" class="lg:hidden p-2 text-white">
+            <i data-lucide="menu" class="w-8 h-8"></i>
         </button>
     </nav>
 
-    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black z-[10000] flex flex-col items-center justify-center lg:hidden">
-        <button id="menu-close-btn" class="absolute top-8 right-8 p-2">
+    <div id="mobile-menu" class="fixed inset-0 z-[10000] bg-black flex flex-col items-center justify-center gap-8 lg:hidden">
+        <button id="menu-close" class="absolute top-8 right-8 p-2">
             <i data-lucide="x" class="w-10 h-10 text-white"></i>
         </button>
-
-        <div class="flex flex-col items-center gap-8 text-center">
-            <a href="index.html" class="text-3xl font-black uppercase italic tracking-tighter">Accueil</a>
-            <a href="index.html#marques" class="text-3xl font-black uppercase italic tracking-tighter">Nos Marques</a>
-            <a href="services.html" class="text-3xl font-black uppercase italic tracking-tighter text-[--brand-violet]">Nos Services</a>
-            
-            <div class="flex gap-8 my-4">
-                <a href="https://www.instagram.com/optical.concept/" target="_blank">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" class="w-10 h-10" alt="Insta">
-                </a>
-                <a href="https://www.facebook.com/opticalconcept/" target="_blank">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" class="w-10 h-10" alt="FB">
-                </a>
-            </div>
-
-            <a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv" target="_blank" class="bg-[--brand-violet] px-10 py-5 rounded-full text-white font-black uppercase tracking-widest text-sm">Prendre RDV</a>
-        </div>
+        <a href="#home" class="text-2xl font-bold uppercase tracking-widest menu-link">Accueil</a>
+        <a href="index.html#marques" class="text-2xl font-bold uppercase tracking-widest menu-link">Nos Marques</a>
+        <a href="services.html" class="text-2xl font-bold uppercase tracking-widest menu-link text-[--brand-violet]">Nos Services</a>
+        <a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv" target="_blank" class="bg-[--brand-violet] px-8 py-4 rounded-full text-white font-bold uppercase">Prendre RDV</a>
     </div>
 
     <section class="pt-32 md:pt-48 pb-20 container mx-auto px-6">
@@ -231,30 +217,39 @@
                 <div>
                     <h3 class="text-[--brand-violet] font-bold uppercase tracking-widest mb-6 text-sm">Optical Concept</h3>
                     <ul class="space-y-3">
-                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors text-sm">Notre magasin</a></li>
-                        <li><a href="index.html#collections" class="text-gray-400 hover:text-white transition-colors text-sm">Nos marques</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Actualités</a></li>
-                        <li><a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept" target="_blank" class="text-gray-300 font-semibold border-b border-white/10 pb-1 inline-block text-sm">Opticiens Par Conviction</a></li>
+                        <li><a href="index.html" class="footer-link text-gray-400 hover:text-white transition-colors text-sm">Notre magasin</a></li>
+                        <li><a href="index.html#collections" class="footer-link text-gray-400 hover:text-white transition-colors text-sm">Nos marques</a></li>
+                        <li><a href="#" class="footer-link text-gray-400 hover:text-white transition-colors text-sm">Actualités</a></li>
+                        <li><a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept" target="_blank" class="footer-link text-gray-300 font-semibold border-b border-white/10 pb-1 inline-block text-sm">Opticiens Par Conviction</a></li>
                     </ul>
                 </div>
 
                 <div>
                     <h3 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Nous trouver</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">109 AVENUE HENRI BARBUSSE<br>93700 DRANCY</p>
-                    <a href="https://maps.google.com" target="_blank" class="inline-block bg-white/5 hover:bg-[--brand-violet] text-white px-6 py-3 rounded-full text-xs font-bold transition-all uppercase tracking-tighter">S'y rendre</a>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        109 AVENUE HENRI BARBUSSE<br>
+                        93700 DRANCY
+                    </p>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=109+Avenue+Henri+Barbusse+93700+Drancy" target="_blank" class="inline-block bg-white/5 hover:bg-[--brand-violet] text-white px-6 py-3 rounded-full text-xs font-bold transition-all uppercase tracking-tighter">
+                        S'y rendre
+                    </a>
                 </div>
 
                 <div>
                     <h3 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Nous contacter</h3>
                     <ul class="space-y-4 mb-6">
                         <li class="flex items-center gap-3 text-gray-400 text-sm">
-                            <i data-lucide="mail" class="w-4 h-4 text-[--brand-violet]"></i> optical.concept@gmail.com
+                            <i data-lucide="mail" class="w-4 h-4 text-[--brand-violet]"></i>
+                            optical.concept@gmail.com
                         </li>
                         <li class="flex items-center gap-3 text-gray-400 text-sm">
-                            <i data-lucide="phone" class="w-4 h-4 text-[--brand-violet]"></i> 01 48 30 59 50
+                            <i data-lucide="phone" class="w-4 h-4 text-[--brand-violet]"></i>
+                            01 48 30 59 50
                         </li>
                     </ul>
-                    <a href="mailto:optical.concept@gmail.com" class="inline-block bg-[--brand-violet]/20 border border-[--brand-violet]/30 hover:bg-[--brand-violet] text-white px-6 py-3 rounded-full text-xs font-bold transition-all uppercase tracking-tighter">Nous contacter</a>
+                    <a href="mailto:optical.concept@gmail.com" class="inline-block bg-[--brand-violet]/20 border border-[--brand-violet]/30 hover:bg-[--brand-violet] text-white px-6 py-3 rounded-full text-xs font-bold transition-all uppercase tracking-tighter">
+                        Nous contacter
+                    </a>
                 </div>
             </div>
 
@@ -262,8 +257,9 @@
                 <div class="flex gap-8">
                     <a href="mention_legales.html" class="text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Mentions légales</a>
                     <a href="cgu.html" class="text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors">CGU</a>
+                    <a href="confid.html" class="text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Confidentialité</a>
                 </div>
-                <p class="text-[10px] text-gray-600 uppercase tracking-[0.5em] text-center">Groupe all © - Tous droits réservés - 2026</p>
+                <p class="text-[10px] text-gray-600 uppercase tracking-[0.5em] text-center md:text-right">Groupe all © - Tous droits réservés - 2026</p>
             </div>
         </div>
     </footer>
@@ -271,7 +267,7 @@
     <script>
         lucide.createIcons();
 
-        // NAVBAR SCROLL EFFET
+        // NAVBAR SCROLL
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -283,30 +279,19 @@
             }
         });
 
-        // MENU MOBILE LOGIC
-        const menuOpenBtn = document.getElementById('menu-open-btn');
-        const menuCloseBtn = document.getElementById('menu-close-btn');
-        const menuOverlay = document.getElementById('mobile-menu-overlay');
+        // MENU MOBILE TOGGLE
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuLinks = document.querySelectorAll('.menu-link');
 
-        menuOpenBtn.addEventListener('click', () => {
-            menuOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Empêche de scroller derrière le menu
+        menuToggle.addEventListener('click', () => mobileMenu.classList.add('active'));
+        menuClose.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.remove('active'));
         });
 
-        menuCloseBtn.addEventListener('click', () => {
-            menuOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-
-        // Fermer le menu si on clique sur un lien
-        menuOverlay.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        });
-
-        // GSAP ANIMATIONS
+        // ANIMATION GSAP ENTRÉE
         window.addEventListener('load', () => {
             const tl = gsap.timeline();
             tl.fromTo(".hero-animate > *", 

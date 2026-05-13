@@ -30,7 +30,7 @@
             font-family: 'Montserrat', sans-serif;
             background-color: var(--dark-bg);
             color: white;
-            scroll-behavior: smooth;
+            scroll-behavior: smooth; /* Naturel mais sera géré par GSAP pour plus de fluidité */
         }
 
         .font-script { font-family: 'Dancing Script', cursive; }
@@ -56,7 +56,7 @@
             height: 100%;
             object-fit: cover;
             opacity: 0.5;
-            transform: scale(1.1);
+            transform: scale(1.1); /* Pour l'effet de zoom au chargement */
         }
 
         .nav-link { position: relative; cursor: pointer; }
@@ -76,22 +76,6 @@
             transition: transform 0.3s ease;
         }
         .social-link:hover .social-logo-img { transform: scale(1.1); }
-
-        /* --- MENU MOBILE --- */
-        #mobile-menu {
-            position: fixed;
-            inset: 0;
-            background: rgba(10, 10, 10, 0.98);
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            transform: translateX(100%);
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        #mobile-menu.active { transform: translateX(0); }
 
         .brand-card {
             background: white;
@@ -136,8 +120,6 @@
             border: 1px solid rgba(255,255,255,0.1);
             display: inline-flex;
             align-items: center;
-            overflow-x: auto;
-            max-width: 100%;
         }
 
         .filter-btn {
@@ -186,7 +168,7 @@
             display: none;
             position: fixed;
             inset: 0;
-            z-index: 20000;
+            z-index: 10000;
             background: rgba(0,0,0,0.9);
             align-items: center;
             justify-content: center;
@@ -214,9 +196,9 @@
 </head>
 <body>
 
-    <nav id="navbar" class="fixed w-full z-[999] transition-all duration-500 py-6 md:py-8 px-6 md:px-12 flex justify-between items-center">
+    <nav id="navbar" class="fixed w-full z-[9999] transition-all duration-500 py-8 px-6 md:px-12 flex justify-between items-center">
         <div class="flex flex-col leading-none">
-            <span class="text-2xl md:text-5xl font-extrabold uppercase tracking-tighter">Optical <span class="font-script text-[--brand-green] capitalize text-3xl md:text-4xl">Concept</span></span>
+            <span class="text-3xl md:text-5xl font-extrabold uppercase tracking-tighter">Optical <span class="font-script text-[--brand-green] capitalize text-4xl">Concept</span></span>
         </div>
 
         <div class="hidden lg:flex gap-10 text-sm uppercase tracking-[0.2em] font-bold items-center">
@@ -235,26 +217,11 @@
 
             <a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv" target="_blank" class="bg-[--brand-violet] px-8 py-4 rounded-full hover:scale-105 transition-all shadow-lg text-white">Prendre RDV</a>
         </div>
-
-        <button id="burger-btn" class="lg:hidden z-[11000] text-white">
-            <i data-lucide="menu" id="burger-icon" class="w-8 h-8"></i>
-        </button>
     </nav>
-
-    <div id="mobile-menu">
-        <a onclick="closeMobileMenu(); scrollToSection('#home')" class="text-2xl font-bold uppercase tracking-widest">Accueil</a>
-        <a onclick="closeMobileMenu(); scrollToSection('#marques')" class="text-2xl font-bold uppercase tracking-widest">Nos Marques</a>
-        <a href="services.html" class="text-2xl font-bold uppercase tracking-widest">Nos Services</a>
-        <div class="flex gap-8 my-4">
-            <a href="https://www.instagram.com/optical.concept/" target="_blank"><i data-lucide="instagram" class="w-8 h-8"></i></a>
-            <a href="https://www.facebook.com/opticalconcept/" target="_blank"><i data-lucide="facebook" class="w-8 h-8"></i></a>
-        </div>
-        <a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv" target="_blank" class="bg-[--brand-violet] px-10 py-4 rounded-full font-bold uppercase text-sm">Prendre RDV</a>
-    </div>
 
     <section id="home" class="relative h-screen flex items-center overflow-hidden">
         <div class="hero-img-container">
-            <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=2000" id="hero-bg">
+            <img src="fond.webp" id="hero-bg">
             <div class="hero-overlay"></div>
         </div>
 
@@ -264,7 +231,7 @@
                     <span class="h-[2px] w-12 bg-[--brand-green]"></span>
                     <span class="text-[--brand-green] uppercase tracking-[0.3em] text-xs font-bold">Votre Regard, Notre Signature</span>
                 </div>
-                <h1 class="text-5xl md:text-8xl font-extrabold leading-none mb-8 italic" id="hero-title">
+                <h1 class="text-6xl md:text-8xl font-extrabold leading-none mb-8 italic" id="hero-title">
                     L'ÉLÉGANCE <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-[--brand-violet] to-purple-400">À DRANCY.</span>
                 </h1>
                 <div class="flex flex-wrap gap-6 mt-12" id="hero-btns">
@@ -281,7 +248,7 @@
     <section id="marques" class="py-24 bg-black">
         <div class="container mx-auto px-6">
             <div class="mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-8">Nos <br><span class="text-gray-600 italic font-light">Marques</span></h2>
+                <h2 class="text-5xl font-bold uppercase tracking-tighter mb-8">Nos <br><span class="text-gray-600 italic font-light">Marques</span></h2>
                 
                 <div class="flex flex-col lg:flex-row gap-6 justify-between items-center">
                     <div class="relative w-full lg:max-w-md">
@@ -294,7 +261,7 @@
                         <button onclick="filterSelection('all', event)" class="filter-btn active">Tous</button>
                         <button onclick="filterSelection('luxe', event)" class="filter-btn">Luxe</button>
                         <button onclick="filterSelection('createur', event)" class="filter-btn">Créateur</button>
-                        <button onclick="filterSelection('sport', event)" class="filter-btn">Solaire</button>
+                        <button onclick="filterSelection('sport', event)" class="filter-btn">Sport / Solaire</button>
                     </div>
                 </div>
             </div>
@@ -303,42 +270,42 @@
                 <div class="brand-card sport createur" data-name="carrera">
                     <div class="brand-logo-container"><img src="carrera.jpg" alt="Carrera"></div>
                     <p class="text-black font-bold text-center text-sm uppercase">Carrera</p>
-                    <button onclick="openBrand('Carrera', '...')" class="mt-4 uppercase">En savoir plus</button>
+                    <button onclick="openBrand('Carrera', 'L\'histoire de Carrera commence en 1956, inspirée par la légendaire course automobile Carrera Panamericana. Cette origine sportive a forgé l\'identité de la marque : audace, innovation et performance.\n\nLes collections se distinguent par l\'utilisation du Optyl, un matériau révolutionnaire plus léger et résistant que l\'acétate classique. Le design mélange habilement des formes pilotes iconiques avec des détails techniques modernes.\n\nChoisir Carrera chez Optical Concept Drancy, c\'est opter pour un style dynamique qui traverse les époques. Chaque monture exprime une personnalité forte et une recherche constante d\'excellence.')" class="mt-4 uppercase">En savoir plus</button>
                 </div>
                 <div class="brand-card luxe createur" data-name="cazal">
                     <div class="brand-logo-container"><img src="cazal.png" alt="Cazal"></div>
                     <p class="text-black font-bold text-center text-sm uppercase">Cazal</p>
-                    <button onclick="openBrand('Cazal', '...')" class="mt-4 uppercase">En savoir plus</button>
+                    <button onclick="openBrand('Cazal', 'Cazal est une révolution stylistique lancée par Cari Zalloni dans les années 80. Véritable icône de la culture hip-hop et du luxe extravagant, la marque a su créer un langage visuel unique.\n\nChaque monture est une pièce d\'orfèvrerie. Fabriquées avec des matériaux précieux comme l\'or 24 carats, les lunettes Cazal se reconnaissent à leurs formes géométriques complexes qui défient les conventions.\n\nPortées par les plus grandes stars, les créations Cazal disponibles dans notre boutique s\'adressent à ceux qui souhaitent affirmer leur singularité avec un accessoire qui est une véritable déclaration artistique.')" class="mt-4 uppercase">En savoir plus</button>
                 </div>
                 <div class="brand-card createur" data-name="dsquared2">
                     <div class="brand-logo-container"><img src="Dsquared2.png" alt="Dsquared2"></div>
                     <p class="text-black font-bold text-center text-sm uppercase">Dsquared2</p>
-                    <button onclick="openBrand('Dsquared2', '...')" class="mt-4 uppercase">En savoir plus</button>
+                    <button onclick="openBrand('Dsquared2', 'Dsquared2 est le fruit d\'un mélange explosif entre l\'impertinence canadienne et le savoir-faire italien. La marque a conquis le monde avec son concept alternant entre luxe sophistiqué et allure décontractée.\n\nLa ligne optique reflète cet esprit contrasté : on y retrouve des montures épaisses en acétate au style rétro-chic, côtoyant des modèles urbains. Les détails distinctifs ajoutent une touche rebelle à des formes élégantes.\n\nNous recommandons Dsquared2 aux clients qui cherchent des lunettes avec du caractère. C\'est une marque qui ose, parfaite pour ceux qui veulent allier qualité européenne et esthétique moderne.')" class="mt-4 uppercase">En savoir plus</button>
                 </div>
                 <div class="brand-card sport" data-name="fila">
                     <div class="brand-logo-container"><img src="fila.png" alt="Fila"></div>
                     <p class="text-black font-bold text-center text-sm uppercase">Fila</p>
-                    <button onclick="openBrand('Fila', '...')" class="mt-4 uppercase">En savoir plus</button>
+                    <button onclick="openBrand('Fila', 'Fila a évolué d\'un fabricant textile pour montagnards à une icône mondiale du lifestyle sportif. Son identité repose sur un équilibre parfait entre héritage vintage et innovation contemporaine.\n\nLes lunettes Fila sont conçues pour accompagner un mode de vie actif sans sacrifier l\'esthétique. Elles intègrent des éléments de design streetwear, utilisant des matériaux légers pour garantir une tenue irréprochable.\n\nLes montures Fila séduisent par leur simplicité efficace et leur rapport qualité-prix exceptionnel. Elles sont idéales pour un look urbain dynamique, alliant fraîcheur visuelle et confort technique.')" class="mt-4 uppercase">En savoir plus</button>
                 </div>
                 <div class="brand-card luxe" data-name="givenchy">
                     <div class="brand-logo-container"><img src="Givenchy.png" alt="Givenchy"></div>
                     <p class="text-black font-bold text-center text-sm uppercase">Givenchy</p>
-                    <button onclick="openBrand('Givenchy', '...')" class="mt-4 uppercase">En savoir plus</button>
+                    <button onclick="openBrand('Givenchy', 'Incarnation de l\'élégance aristocratique française, la maison Givenchy infuse dans ses collections optiques toute la distinction qui a fait sa renommée. C\'est un luxe sombre, pur et architectural.\n\nLes lunettes se distinguent par des lignes sobres mais puissantes, jouant souvent sur des volumes structurés. L\'emblématique logo 4G est intégré avec subtilité, témoignant d\'un souci du détail qui frise la perfection.\n\nPorter Givenchy, c\'est choisir une allure intemporelle. Nous sélectionnons ces modèles pour nos clients exigeants qui recherchent une pièce capable de souligner les traits du visage avec une élégance absolue.')" class="mt-4 uppercase">En savoir plus</button>
                 </div>
                 <div class="brand-card createur" data-name="guess">
                     <div class="brand-logo-container"><img src="Guess.png" alt="Guess"></div>
                     <p class="text-black font-bold text-center text-sm uppercase">Guess</p>
-                    <button onclick="openBrand('Guess', '...')" class="mt-4 uppercase">En savoir plus</button>
+                    <button onclick="openBrand('Guess', 'Guess symbolise depuis plus de 40 ans le glamour américain. Née de l\'influence méditerranéenne des frères Marciano, la marque propose des objets de désir sexy, jeunes et aventureux.\n\nLa collection joue sur la féminité affirmée et un style urbain soigné. On y retrouve des motifs emblématiques et des finitions métalliques dorées qui capturent la lumière et attirent le regard.\n\nChez Optical Concept Drancy, Guess est la marque phare pour suivre les tendances à un prix accessible. Chaque paire est une invitation à la séduction, idéale pour pimenter votre garde-robe.')" class="mt-4 uppercase">En savoir plus</button>
                 </div>
                 <div class="brand-card luxe createur" data-name="hugo boss">
                     <div class="brand-logo-container"><img src="Hugo Boss.png" alt="Hugo Boss"></div>
                     <p class="text-black font-bold text-center text-sm uppercase">Hugo Boss</p>
-                    <button onclick="openBrand('Hugo Boss', '...')" class="mt-4 uppercase">En savoir plus</button>
+                    <button onclick="openBrand('Hugo Boss', 'Hugo Boss est synonyme de réussite et de précision allemande. La marque s\'est imposée comme le leader du prêt-à-porter haut de gamme, proposant des coupes impeccables et une qualité supérieure.\n\nCôté optique, Hugo Boss décline cette exigence à travers des montures techniques et élégantes. L\'utilisation du titane permet de créer des lunettes d\'une grande finesse, offrant légèreté et durabilité.\n\nQue vous optiez pour la ligne BOSS ou HUGO, vous trouverez dans notre magasin une réponse adaptée à vos besoins. C\'est le choix de la rigueur esthétique et du confort fonctionnel.')" class="mt-4 uppercase">En savoir plus</button>
                 </div>
                 <div class="brand-card createur sport" data-name="ray-ban">
                     <div class="brand-logo-container"><img src="Rayban-Logo.webp" alt="Ray-Ban"></div>
                     <p class="text-black font-bold text-center text-sm uppercase">Ray-Ban</p>
-                    <button onclick="openBrand('Ray-Ban', '...')" class="mt-4 uppercase">En savoir plus</button>
+                    <button onclick="openBrand('Ray-Ban', 'Ray-Ban est la marque de lunettes la plus célèbre au monde. Créée en 1937 pour les pilotes, elle est devenue le symbole universel du cool, portée par les musiciens et les acteurs de légende.\n\nDes mythiques Aviator aux Wayfarer, Ray-Ban propose des designs qui ne se démodent jamais. La marque continue d\'innover avec des verres technologiques pour une clarté visuelle inégalée.\n\nInstaller une paire de Ray-Ban sur son nez, c\'est entrer dans l\'histoire. Nous disposons d\'un large choix de modèles iconiques pour que chacun puisse trouver la forme qui correspond à son style.')" class="mt-4 uppercase">En savoir plus</button>
                 </div>
             </div>
         </div>
@@ -357,10 +324,10 @@
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="space-y-10">
-                    <h2 class="text-5xl md:text-6xl font-bold tracking-tighter italic leading-none">NOUS <br><span class="text-[--brand-violet]">TROUVER.</span></h2>
+                    <h2 class="text-6xl font-bold tracking-tighter italic leading-none">NOUS <br><span class="text-[--brand-violet]">TROUVER.</span></h2>
                     <div class="space-y-8">
                         <div class="flex gap-6 items-start group">
-                            <div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border border-white/10 bg-white/5">
+                            <div class="w-12 h-12 rounded-2xl glass-card flex items-center justify-center shrink-0 group-hover:border-[--brand-violet] transition-colors border border-white/10 bg-white/5">
                                 <i data-lucide="map-pin" class="text-[--brand-violet] w-5 h-5"></i>
                             </div>
                             <div>
@@ -369,44 +336,66 @@
                             </div>
                         </div>
                         <div class="flex gap-6 items-start group">
-                            <div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border border-white/10 bg-white/5">
+                            <div class="w-12 h-12 rounded-2xl glass-card flex items-center justify-center shrink-0 group-hover:border-[--brand-green] transition-colors border border-white/10 bg-white/5">
                                 <i data-lucide="clock" class="text-[--brand-green] w-5 h-5"></i>
                             </div>
                             <div>
                                 <h4 class="font-bold text-lg uppercase tracking-tighter">Horaires de Visite</h4>
-                                <p class="text-gray-400">Lundi - Samedi : 10:00 – 19:00</p>
+                                <p class="text-gray-400">Lundi - Samedi : 10:00 – 19:00<br>Dimanche : Fermé</p>
                             </div>
                         </div>
                     </div>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=109+Avenue+Henri+Barbusse+93700+Drancy" target="_blank" class="bg-white text-black px-10 py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-[--brand-green] hover:text-white transition-all">Itinéraire Google</a>
+                        <a href="https://www.opticiensparconviction.fr/votre-opticien-a-drancy/optical-concept/prise-de-rdv" target="_blank" class="border border-[--brand-violet] text-[--brand-violet] px-10 py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-[--brand-violet] hover:text-white transition-all">Prendre rendez-vous</a>
+                    </div>
                 </div>
-                <div class="h-[400px] md:h-[550px] rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl relative">
+                <div class="h-[550px] rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl relative">
                     <div id="map"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-black/40 border-t border-white/5 pt-16 pb-8 text-center md:text-left">
+    <footer class="bg-black/40 border-t border-white/5 pt-16 pb-8">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
                 <div>
                     <h3 class="text-[--brand-violet] font-bold uppercase tracking-widest mb-6 text-sm">Optical Concept</h3>
-                    <ul class="space-y-3 text-gray-400 text-sm">
-                        <li><a onclick="scrollToSection('#home')" class="cursor-pointer">Notre magasin</a></li>
-                        <li><a onclick="scrollToSection('#marques')" class="cursor-pointer">Nos marques</a></li>
+                    <ul class="space-y-3">
+                        <li><a onclick="scrollToSection('#home')" class="footer-link text-gray-400 cursor-pointer">Notre magasin</a></li>
+                        <li><a onclick="scrollToSection('#marques')" class="footer-link text-gray-400 cursor-pointer">Nos marques</a></li>
+                        <li><a href="#" class="footer-link text-gray-400">Actualités</a></li>
                     </ul>
                 </div>
+
                 <div>
                     <h3 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Nous trouver</h3>
-                    <p class="text-gray-400 text-sm mb-6">109 AVENUE HENRI BARBUSSE<br>93700 DRANCY</p>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">109 AVENUE HENRI BARBUSSE<br>93700 DRANCY</p>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=109+Avenue+Henri+Barbusse+93700+Drancy" target="_blank" class="inline-block bg-white/5 hover:bg-[--brand-violet] text-white px-6 py-3 rounded-full text-xs font-bold transition-all uppercase tracking-tighter">S'y rendre</a>
                 </div>
+
                 <div>
-                    <h3 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Contact</h3>
-                    <p class="text-gray-400 text-sm">01 48 30 59 50</p>
+                    <h3 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Nous contacter</h3>
+                    <ul class="space-y-4 mb-6">
+                        <li class="flex items-center gap-3 text-gray-400 text-sm">
+                            <i data-lucide="mail" class="w-4 h-4 text-[--brand-violet]"></i>optical.concept@gmail.com
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400 text-sm">
+                            <i data-lucide="phone" class="w-4 h-4 text-[--brand-violet]"></i>01 48 30 59 50
+                        </li>
+                    </ul>
+                    <a href="mailto:optical.concept@gmail.com" class="inline-block bg-[--brand-violet]/20 border border-[--brand-violet]/30 hover:bg-[--brand-violet] text-white px-6 py-3 rounded-full text-xs font-bold transition-all uppercase tracking-tighter">Nous contacter</a>
                 </div>
             </div>
+
             <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                <p class="text-[10px] text-gray-600 uppercase tracking-[0.5em]">Groupe all © 2026</p>
+                <div class="flex gap-8">
+                    <a href="mention_legales.html" class="text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Mentions légales</a>
+                    <a href="cgu.html" class="text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors">CGU</a>
+                    <a href="confid.html" class="text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Confidentialité</a>
+                </div>
+                <p class="text-[10px] text-gray-600 uppercase tracking-[0.5em]">Groupe all © - Tous droits réservés - 2026</p>
             </div>
         </div>
     </footer>
@@ -414,26 +403,7 @@
     <script>
         lucide.createIcons();
 
-        // --- GESTION MENU MOBILE ---
-        const burgerBtn = document.getElementById('burger-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const burgerIcon = document.getElementById('burger-icon');
-
-        burgerBtn.addEventListener('click', () => {
-            const isActive = mobileMenu.classList.toggle('active');
-            burgerIcon.setAttribute('data-lucide', isActive ? 'x' : 'menu');
-            lucide.createIcons();
-            document.body.style.overflow = isActive ? 'hidden' : '';
-        });
-
-        function closeMobileMenu() {
-            mobileMenu.classList.remove('active');
-            burgerIcon.setAttribute('data-lucide', 'menu');
-            lucide.createIcons();
-            document.body.style.overflow = '';
-        }
-
-        // --- TES SCRIPTS GSAP (IDENTIQUES) ---
+        // 1. ANIMATION D'ENTRÉE HERO (Amélioration Visuelle)
         window.addEventListener('DOMContentLoaded', () => {
             const tl = gsap.timeline();
             tl.to("#hero-bg", { scale: 1, duration: 2, ease: "power2.out" })
@@ -441,11 +411,13 @@
               .from("#hero-title", { y: 50, opacity: 0, duration: 1, skewY: 5 }, "-=0.8")
               .from("#hero-btns", { y: 20, opacity: 0, duration: 0.8 }, "-=0.5");
             
+            // Glider initial
             const activeBtn = document.querySelector('.filter-btn.active');
             if(activeBtn) gsap.set("#glider", { x: activeBtn.offsetLeft - 6, width: activeBtn.offsetWidth });
             animateCards();
         });
 
+        // 2. FONCTION SCROLL ANIMÉ (Amélioration Navigation)
         function scrollToSection(id) {
             gsap.to(window, {
                 duration: 1.2,
@@ -494,7 +466,7 @@
         function openBrand(name, desc) {
             const modal = document.getElementById('brand-modal');
             document.getElementById('modal-title').innerText = name;
-            document.getElementById('modal-desc').innerHTML = desc;
+            document.getElementById('modal-desc').innerHTML = desc.split('\n\n').map(p => `<p>${p}</p>`).join('');
             modal.style.display = 'flex';
             gsap.to(modal, { opacity: 1, duration: 0.3 });
             gsap.to("#modal-content", { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.2)" });
