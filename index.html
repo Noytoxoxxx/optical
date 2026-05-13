@@ -255,21 +255,28 @@
         </div>
     </div>
 
-    <section id="home" class="relative h-[80vh] flex items-center overflow-hidden">
+    <section id="home" class="relative h-screen flex items-center overflow-hidden">
         <div class="hero-img-container">
-            <img src="fond.webp" id="hero-bg" class="w-full h-full object-cover">
+            <img src="fond.webp" id="hero-bg">
             <div class="hero-overlay"></div>
         </div>
 
         <div class="container mx-auto px-6 md:px-12 relative z-10">
-            <div class="max-w-4xl">
+            <div class="max-w-3xl">
                 <div class="flex items-center gap-4 mb-6" id="hero-tagline">
                     <span class="h-[2px] w-12 bg-[--brand-green]"></span>
-                    <span class="text-[--brand-green] uppercase tracking-[0.3em] text-[10px] md:text-xs font-bold">Confidentialité & Transparence</span>
+                    <span class="text-[--brand-green] uppercase tracking-[0.3em] text-[10px] md:text-xs font-bold">Votre Regard, Notre Signature</span>
                 </div>
-                <h1 class="text-4xl sm:text-6xl md:text-8xl font-extrabold leading-tight md:leading-none mb-8 italic uppercase" id="hero-title">
-                    Politique de <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-[--brand-violet] to-purple-400">Confidentialité.</span>
+                <h1 class="text-4xl sm:text-6xl md:text-8xl font-extrabold leading-tight md:leading-none mb-8 italic" id="hero-title">
+                    L'ÉLÉGANCE <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-[--brand-violet] to-purple-400">À DRANCY.</span>
                 </h1>
+                <div class="flex flex-wrap gap-4 md:gap-6 mt-8 md:mt-12" id="hero-btns">
+                    <a onclick="scrollToSection('#marques')" class="px-8 py-4 border border-white/30 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-white hover:text-black transition-all bg-white/5 backdrop-blur-sm cursor-pointer">Nos Marques</a>
+                    <a href="tel:0148305950" class="flex items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 px-6 py-4 rounded-full group hover:border-[--brand-violet] transition-all">
+                        <i data-lucide="phone-call" class="w-4 h-4 text-[--brand-green] group-hover:scale-110 transition-transform"></i>
+                        <span class="text-xs font-bold tracking-widest">01 48 30 59 50</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
